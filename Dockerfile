@@ -13,8 +13,8 @@ RUN apt-get update && \
 
 # Compile obs-studio
 RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
-    git checkout $OBS_VERSION && \
     cd obs-studio && \
+    git checkout $OBS_VERSION && \
     mkdir build && cd build  && \
     cmake -DUNIX_STRUCTURE=0 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
     make -j4 && make install
