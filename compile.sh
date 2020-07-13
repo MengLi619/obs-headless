@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. config.sh                                                                                                                              
+. config.sh
 
 echo -e "\033[32mGenerating proto files...\033[0m"
 cd proto/

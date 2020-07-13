@@ -55,7 +55,7 @@ target_link_libraries(obs_headless_server
 )
 
 # Client
-add_executable(obs_headless_client 
+add_executable(obs_headless_client
     src/client.cpp
     src/proto/studio.pb.cc
     src/proto/studio.grpc.pb.cc

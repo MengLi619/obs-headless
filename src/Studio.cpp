@@ -794,6 +794,7 @@ Status Studio::studioInit() {
 
 	trace_debug("", field_s(ovi.graphics_module));
 
+
 	if(obs_reset_video(&ovi) != OBS_VIDEO_SUCCESS) {
 		return Status(grpc::INTERNAL, "obs_reset_video failed");
 	}
@@ -835,7 +836,7 @@ Status Studio::studioInit() {
 
 	obs_post_load_modules();
 
-	// output and service	
+	// output and service
 	service = obs_service_create("rtmp_common", "rtmp service", nullptr, nullptr);
 	if (!service) {
 		return Status(grpc::INTERNAL, "Couldn't create service");

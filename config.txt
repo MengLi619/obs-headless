@@ -11,7 +11,7 @@ video_keyint_sec 2
 video_rate_control CBR
 video_width 640
 video_height 360
-video_fps_num 25000
-video_fps_den 1000
+video_fps_num 25
+video_fps_den 1
 audio_sample_rate 48000
 audio_bitrate_kbps 128
