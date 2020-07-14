@@ -56,11 +56,14 @@ RUN apt-get update && \
     libgrpc6 \
     protobuf-compiler-grpc
 
+# Fix 'error while loading shared libraries: libQt5Core.so.5'
+# https://github.com/dnschneid/crouton/wiki/Fix-error-while-loading-shared-libraries:-libQt5Core.so.5
+RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+
 # Compile obs-studio
 RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cd obs-studio && \
-    git checkout $OBS_VERSION && \
     mkdir build && cd build  && \
-    cmake -DENABLE_UI=false -DENABLE_SCRIPTING=false -DUNIX_STRUCTURE=0 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
+    cmake -DENABLE_UI=false -DENABLE_SCRIPTING=false -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
     make -j4 && make install
 
