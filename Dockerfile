@@ -67,3 +67,9 @@ RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cmake -DENABLE_UI=false -DENABLE_SCRIPTING=false -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
     make -j1 && make install
 
+# Compile obs-headless
+COPY proto shows src compile.sh config.sh config.txt run_server.sh .
+RUN sh compile.sh
+
+ENTRYPOINT ./run_server.sh
+
