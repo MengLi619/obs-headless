@@ -68,7 +68,7 @@ RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     make -j1 && make install
 
 # Compile obs-headless
-COPY proto shows src compile.sh config.sh config.txt run_server.sh .
+COPY proto shows src compile.sh config.sh config.txt run_server.sh ./
 RUN sh compile.sh
 
 ENTRYPOINT ./run_server.sh
