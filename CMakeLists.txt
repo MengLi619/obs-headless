@@ -16,8 +16,8 @@ add_definitions(-DLIBOBS_PATH="${OBS_INSTALL_PATH}/bin/64bit/")
 add_definitions(-DLIBOBS_PLUGINS_PATH="${OBS_INSTALL_PATH}/obs-plugins/64bit/")
 add_definitions(-DLIBOBS_PLUGINS_DATA_PATH="${OBS_INSTALL_PATH}/data/obs-plugins/64bit/")
 
-include_directories("${OBS_INSTALL_PATH}/include/obs/")
-link_directories("${OBS_INSTALL_PATH}/bin/")
+include_directories("${OBS_INSTALL_PATH}/include/")
+link_directories("${OBS_INSTALL_PATH}/bin/64bit/")
 
 
 # Obs-headless

@@ -63,6 +63,7 @@ RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so
 # Compile obs-studio
 RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cd obs-studio && \
+    git checkout $OBS_VERSION && \
     mkdir build && cd build  && \
     cmake -DENABLE_UI=false -DENABLE_SCRIPTING=false -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
     make -j1 && make install
@@ -73,7 +74,7 @@ COPY shows shows
 COPY src src
 COPY compile.sh config.sh config.txt run_server.sh CMakeLists.txt ./
 
-RUN sh compile.sh
+RUN ./compile.sh
 
 ENTRYPOINT ./run_server.sh
 
