@@ -1,4 +1,4 @@
-FROM bandi13/gui-docker:1.01
+FROM dorowu/ubuntu-desktop-lxde-vnc:focal-lxqt
 
 # Setup timezone
 ENV TZ=Asia/Shanghai
