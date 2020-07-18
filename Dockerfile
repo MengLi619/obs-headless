@@ -1,5 +1,8 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:focal-lxqt
 
+# Fix Hash mismatch error
+RUN sed -i 's#mirror://mirrors.ubuntu.com/mirrors.txt#http://archive.ubuntu.com/ubuntu/#' /etc/apt/sources.list;
+
 # Setup timezone
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
