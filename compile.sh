@@ -1,9 +1,6 @@
 #!/bin/bash
 
-BUILD_DIR="build"
-INSTALL_DIR=".."
-BUILD_TYPE=Release
-OBS_INSTALL_PATH="${HOME}/obs-studio-portable"
+. config.sh
 
 echo -e "\033[32mGenerating proto files...\033[0m"
 cd proto/

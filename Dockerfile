@@ -1,7 +1,4 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc:focal-lxqt
-
-# Fix Hash mismatch error
-RUN sed -i 's#mirror://mirrors.ubuntu.com/mirrors.txt#http://archive.ubuntu.com/ubuntu/#' /etc/apt/sources.list;
+FROM ubuntu:20.04 as build
 
 # Setup timezone
 ENV TZ=Asia/Shanghai
