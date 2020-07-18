@@ -1,11 +1,10 @@
-FROM ubuntu:20.04 as build
-ARG OBS_VERSION=23.2.1
+FROM bandi13/gui-docker:1.01
 
 # Setup timezone
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Install git grpc
+# Install build-tool, git, obs dependencies, grpc
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
@@ -61,10 +60,12 @@ RUN apt-get update && \
 RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
 
 # Compile obs-studio
+ARG OBS_VERSION=23.2.1
 RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cd obs-studio && \
+    git checkout $OBS_VERSION && \
     mkdir build && cd build  && \
-    cmake -DENABLE_UI=false -DENABLE_SCRIPTING=false -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
+    cmake -DUNIX_STRUCTURE=0 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
     make -j1 && make install
 
 # Compile obs-headless
@@ -72,7 +73,6 @@ COPY proto proto
 COPY shows shows
 COPY src src
 COPY compile.sh config.sh config.txt run_server.sh CMakeLists.txt ./
-
 RUN ./compile.sh
 
 ENTRYPOINT ./run_server.sh
