@@ -4,7 +4,7 @@ FROM ubuntu:20.04 as build
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Install build-tool, git, obs dependencies, grpc
+# Install build-tool git obs-dependencies opengl grpc
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
@@ -49,6 +49,10 @@ RUN apt-get update && \
     libxcb-xfixes0-dev \
     libx11-xcb-dev \
     libxcb1-dev \
+    libglvnd0 \
+    libgl1 \
+    libglx0 \
+    libegl1 \
     libgrpc++-dev \
     libgrpc++1 \
     libgrpc-dev \
@@ -74,8 +78,6 @@ COPY shows shows
 COPY src src
 COPY compile.sh config.sh config.txt run_server.sh CMakeLists.txt ./
 RUN ./compile.sh
-
-RUN apt-get install -y mesa-utils libgl1-mesa-glx
 
 ENTRYPOINT ./run_server.sh
 
