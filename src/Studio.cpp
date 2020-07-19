@@ -781,29 +781,29 @@ Status Studio::studioInit() {
 	memset(&ovi, 0, sizeof(ovi));
 	memset(&oai, 0, sizeof(oai));
 
-	ovi.adapter         = 0;
-	ovi.graphics_module = LIBOBS_PATH"libobs-opengl.so.0.0";
-	ovi.output_format   = VIDEO_FORMAT_NV12; // TODO to settings with VIDEO_FORMAT_I420
-	ovi.fps_num         = settings->video_fps_num;
-	ovi.fps_den         = settings->video_fps_den;
-	ovi.base_width      = settings->video_width;
-	ovi.base_height     = settings->video_height;
-	ovi.output_width    = settings->video_width;
-	ovi.output_height   = settings->video_height;
-	ovi.gpu_conversion  = settings->video_gpu_conversion;
-
-	trace_debug("", field_s(ovi.graphics_module));
-
-	if(obs_reset_video(&ovi) != OBS_VIDEO_SUCCESS) {
-		return Status(grpc::INTERNAL, "obs_reset_video failed");
-	}
-
-	oai.samples_per_sec  = settings->audio_sample_rate;
-	oai.speakers         = SPEAKERS_STEREO; // TODO to settings
-
-	if (obs_reset_audio(&oai) != true) {
-		return Status(grpc::INTERNAL, "obs_reset_audio failed");
-	}
+//	ovi.adapter         = 0;
+//	ovi.graphics_module = LIBOBS_PATH"libobs-opengl.so.0.0";
+//	ovi.output_format   = VIDEO_FORMAT_NV12; // TODO to settings with VIDEO_FORMAT_I420
+//	ovi.fps_num         = settings->video_fps_num;
+//	ovi.fps_den         = settings->video_fps_den;
+//	ovi.base_width      = settings->video_width;
+//	ovi.base_height     = settings->video_height;
+//	ovi.output_width    = settings->video_width;
+//	ovi.output_height   = settings->video_height;
+//	ovi.gpu_conversion  = settings->video_gpu_conversion;
+//
+//	trace_debug("", field_s(ovi.graphics_module));
+//
+//	if(obs_reset_video(&ovi) != OBS_VIDEO_SUCCESS) {
+//		return Status(grpc::INTERNAL, "obs_reset_video failed");
+//	}
+//
+//	oai.samples_per_sec  = settings->audio_sample_rate;
+//	oai.speakers         = SPEAKERS_STEREO; // TODO to settings
+//
+//	if (obs_reset_audio(&oai) != true) {
+//		return Status(grpc::INTERNAL, "obs_reset_audio failed");
+//	}
 
 	// Load modules
 	// For color_source
@@ -835,7 +835,7 @@ Status Studio::studioInit() {
 
 	obs_post_load_modules();
 
-	// output and service	
+	// output and service
 	service = obs_service_create("rtmp_common", "rtmp service", nullptr, nullptr);
 	if (!service) {
 		return Status(grpc::INTERNAL, "Couldn't create service");
