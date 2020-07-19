@@ -75,5 +75,7 @@ COPY src src
 COPY compile.sh config.sh config.txt run_server.sh CMakeLists.txt ./
 RUN ./compile.sh
 
+RUN apt-get install -y mesa-utils libgl1-mesa-glx
+
 ENTRYPOINT ./run_server.sh
 
