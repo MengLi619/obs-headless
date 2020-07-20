@@ -57,14 +57,18 @@ RUN apt-get update && \
     libgrpc++1 \
     libgrpc-dev \
     libgrpc6 \
-    protobuf-compiler-grpc
+    protobuf-compiler-grpc \
+    xorg \
+    xvfb \
+    x11vnc \
+    llvm-dev
 
 # Fix 'error while loading shared libraries: libQt5Core.so.5'
 # https://github.com/dnschneid/crouton/wiki/Fix-error-while-loading-shared-libraries:-libQt5Core.so.5
 RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
 
 # Compile obs-studio
-ARG OBS_VERSION=23.2.1
+ARG OBS_VERSION=25.0.8
 RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cd obs-studio && \
     git checkout $OBS_VERSION && \
