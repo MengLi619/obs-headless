@@ -1,11 +1,7 @@
 FROM ubuntu:20.04 as build
 
-# Setup timezone
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-# Install build-tool git obs-dependencies opengl grpc
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
     apt-get install -y \
     build-essential \
     checkinstall \
@@ -49,26 +45,18 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libxcb-xfixes0-dev \
     libx11-xcb-dev \
     libxcb1-dev \
-    libglvnd0 \
-    libgl1 \
-    libglx0 \
-    libegl1 \
     libgrpc++-dev \
     libgrpc++1 \
     libgrpc-dev \
     libgrpc6 \
-    protobuf-compiler-grpc \
-    xorg \
-    xvfb \
-    x11vnc \
-    llvm-dev
+    protobuf-compiler-grpc
 
-# Fix 'error while loading shared libraries: libQt5Core.so.5'
+# Fix 'error while loading shared libraries: libQt5Core.so.5' when compiling obs
 # https://github.com/dnschneid/crouton/wiki/Fix-error-while-loading-shared-libraries:-libQt5Core.so.5
 RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
 
 # Compile obs-studio
-ARG OBS_VERSION=25.0.8
+ARG OBS_VERSION=23.2.1
 RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cd obs-studio && \
     git checkout $OBS_VERSION && \
@@ -83,5 +71,31 @@ COPY src src
 COPY compile.sh config.sh config.txt run_server.sh CMakeLists.txt ./
 RUN ./compile.sh
 
-ENTRYPOINT ./run_server.sh
+# Deployment
+FROM ubuntu:20.04
+
+# Install xdummy, grpc
+RUN apt-get update && \
+    apt-get install -y \
+    x11vnc \
+    xserver-xorg-video-dummy \
+    xserver-xorg-input-void \
+    libgrpc++-dev \
+    libgrpc++1 \
+    libgrpc-dev \
+    libgrpc6 \
+    protobuf-compiler-grpc
+
+# Setup timezone
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+COPY --from=build ${HOME}/obs-studio-portable ${HOME}/obs-studio-portable
+COPY --from=build build/obs_headless_server build/obs_headless_server
+COPY xorg.conf /etc/xorg.conf
+COPY run_server.sh config.sh entrypoint.sh ./
+
+ENV DISPLAY :99
+
+ENTRYPOINT ['entrypoint.sh']
 
