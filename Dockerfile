@@ -77,21 +77,52 @@ FROM ubuntu:20.04
 # Install xdummy, grpc
 RUN apt-get update && \
     apt-get install -y \
-    libavformat58 \
-    libavdevice58 \
-    libqt5svg5 \
-    libjansson4 \
-    libpulse0 \
-    libavcodec58 \
-    libswscale5 \
-    x11vnc \
-    xserver-xorg-video-dummy \
-    xserver-xorg-input-void \
+    libmbedtls-dev \
+    libasound2-dev \
+    libavcodec-dev \
+    libavdevice-dev \
+    libavfilter-dev \
+    libavformat-dev \
+    libavutil-dev \
+    libcurl4-openssl-dev \
+    libfdk-aac-dev \
+    libfontconfig-dev \
+    libfreetype6-dev \
+    libgl1-mesa-dev \
+    libjack-jackd2-dev \
+    libjansson-dev \
+    libluajit-5.1-dev \
+    libpulse-dev \
+    libqt5x11extras5-dev \
+    libspeexdsp-dev \
+    libswresample-dev \
+    libswscale-dev \
+    libudev-dev \
+    libv4l-dev \
+    libvlc-dev \
+    libx11-dev \
+    libx264-dev \
+    libxcb-shm0-dev \
+    libxcb-xinerama0-dev \
+    libxcomposite-dev \
+    libxinerama-dev \
+    pkg-config \
+    python3-dev \
+    qtbase5-dev \
+    libqt5svg5-dev \
+    swig \
+    libxcb-randr0-dev \
+    libxcb-xfixes0-dev \
+    libx11-xcb-dev \
+    libxcb1-dev \
     libgrpc++-dev \
     libgrpc++1 \
     libgrpc-dev \
     libgrpc6 \
-    protobuf-compiler-grpc
+    protobuf-compiler-grpc \
+    x11vnc \
+    xserver-xorg-video-dummy \
+    xserver-xorg-input-void
 
 # Setup timezone
 ENV TZ=Asia/Shanghai
