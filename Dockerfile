@@ -82,6 +82,7 @@ RUN apt-get update && \
     libjansson4 \
     libpulse0 \
     libavcodec58 \
+    libswscale5 \
     x11vnc \
     xserver-xorg-video-dummy \
     xserver-xorg-input-void \
@@ -102,5 +103,5 @@ COPY run_server.sh config.sh entrypoint.sh ./
 
 ENV DISPLAY :99
 
-ENTRYPOINT ["sh", "-c", "entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
 
