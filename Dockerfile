@@ -77,7 +77,10 @@ FROM ubuntu:20.04
 # Install xdummy, grpc
 RUN apt-get update && \
     apt-get install -y \
-    libqt5svg5-dev \
+    libqt5svg5 \
+    libjansson4 \
+    libpulse0 \
+    libavcodec58 \
     x11vnc \
     xserver-xorg-video-dummy \
     xserver-xorg-input-void \
