@@ -61,7 +61,7 @@ RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
     cd obs-studio && \
     git checkout $OBS_VERSION && \
     mkdir build && cd build  && \
-    cmake -DUNIX_STRUCTURE=0 -DCMAKE_INSTALL_PREFIX="/obs-studio-portable" ..  && \
+    cmake -DUNIX_STRUCTURE=0 -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" ..  && \
     make -j1 && make install
 
 # Compile obs-headless
@@ -90,7 +90,7 @@ RUN apt-get update && \
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY --from=build /obs-studio-portable /obs-studio-portable
+COPY --from=build /root/obs-studio-portable /root/obs-studio-portable
 COPY --from=build /build/obs_headless_server /build/obs_headless_server
 COPY xorg.conf /etc/xorg.conf
 COPY run_server.sh config.sh entrypoint.sh ./

@@ -14,4 +14,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Docker Build
-      run: sh build.sh
+      uses: whoan/docker-build-with-cache-action@v5
+      with:
+        username: Mengli619
+        password: "${{ secrets.DOCKER_HUB_PASSWORD }}"
+        registry: docker.pkg.github.com
+        image_name: obs-headless
