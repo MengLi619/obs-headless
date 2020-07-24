@@ -77,6 +77,7 @@ FROM ubuntu:20.04
 # Install xdummy, grpc
 RUN apt-get update && \
     apt-get install -y \
+    libqt5svg5-dev \
     x11vnc \
     xserver-xorg-video-dummy \
     xserver-xorg-input-void \
@@ -97,5 +98,5 @@ COPY run_server.sh config.sh entrypoint.sh ./
 
 ENV DISPLAY :99
 
-ENTRYPOINT ['entrypoint.sh']
+ENTRYPOINT ['sh', 'entrypoint.sh']
 
