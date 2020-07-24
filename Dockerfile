@@ -74,7 +74,7 @@ RUN ./compile.sh
 # Deployment
 FROM ubuntu:20.04
 
-# Install xdummy, grpc
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y \
     libmbedtls-dev \
