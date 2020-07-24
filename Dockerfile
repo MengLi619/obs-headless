@@ -78,6 +78,7 @@ FROM ubuntu:20.04
 RUN apt-get update && \
     apt-get install -y \
     libavformat58 \
+    libavdevice58 \
     libqt5svg5 \
     libjansson4 \
     libpulse0 \

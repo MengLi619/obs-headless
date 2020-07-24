@@ -1,10 +1,10 @@
-name: obs-headless-pipeline
+name: obs-headless-cicd
 
 on:
   push:
-    branches: [ docker ]
+    branches: [ master ]
   pull_request:
-    branches: [ docker ]
+    branches: [ master ]
 
 jobs:
   build:
