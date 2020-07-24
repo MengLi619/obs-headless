@@ -77,6 +77,7 @@ FROM ubuntu:20.04
 # Install xdummy, grpc
 RUN apt-get update && \
     apt-get install -y \
+    libavformat58 \
     libqt5svg5 \
     libjansson4 \
     libpulse0 \
@@ -101,5 +102,5 @@ COPY run_server.sh config.sh entrypoint.sh ./
 
 ENV DISPLAY :99
 
-ENTRYPOINT ['sh', 'entrypoint.sh']
+ENTRYPOINT ["sh", "-c", "entrypoint.sh"]
 
