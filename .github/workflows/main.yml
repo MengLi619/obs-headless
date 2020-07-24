@@ -1,15 +1,17 @@
-name: CI
+name: obs-headless-pipeline
 
 on:
   push:
-    branches: [ master ]
+    branches: [ docker ]
   pull_request:
-    branches: [ master ]
+    branches: [ docker ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Docker Build
       run: sh build.sh
