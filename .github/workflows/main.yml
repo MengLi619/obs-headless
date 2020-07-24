@@ -17,6 +17,6 @@ jobs:
       uses: whoan/docker-build-with-cache-action@v5
       with:
         username: Mengli619
-        password: "${{ secrets.DOCKER_HUB_PASSWORD }}"
+        password: "${{ secrets.GITHUB_TOKEN }}"
         registry: docker.pkg.github.com
         image_name: obs-headless
