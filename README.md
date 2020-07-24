@@ -45,3 +45,38 @@ Now that OBS is installed, build and run obs-headless:
 - [deps] fdk-aac, x264 / ffmpeg. explain ffmpeg_nvenc
 - [style] fix mixed snake_case and camelCase
 - [feat] trace level and format from env
+
+## Docker
+Run obs in docker will be very useful for local development, testing or even for production (Need more work and verification).  
+You can follow these steps to run obs docker in your local machine:
+
+- Build docker image 
+```$shell
+docker build -t local/obs-headless:dev .
+```
+- Create a config.txt file locally, and change server url, stream key ... for your local env.
+```$shell
+cat > config.txt << EOF
+server rtmp://host.docker.internal/live/
+key <your stream key>
+transition_type cut_transition
+transition_delay_sec 10
+transition_duration_ms 990
+video_hw_decode false
+video_hw_encode false
+video_gpu_conversion false
+video_bitrate_kbps 800
+video_keyint_sec 2
+video_rate_control CBR
+video_width 640
+video_height 360
+video_fps_num 25
+video_fps_den 1
+audio_sample_rate 48000
+audio_bitrate_kbps 128
+EOF
+```
+- Run docker
+```$shell
+docker run --rm -p 50051:50051 -v $(pwd)/config.txt:/config.txt local/obs-headless:dev
+```

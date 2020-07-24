@@ -3,7 +3,7 @@
 . config.sh
 
 here=$(pwd)
-cwd="${OBS_INSTALL_PATH}/bin/"
+cwd="${OBS_INSTALL_PATH}/bin/64bit/"
 cd $cwd
 
 echo "Current working directory (for core dumps etc): $cwd"

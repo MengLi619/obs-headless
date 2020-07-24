@@ -68,7 +68,7 @@ RUN git clone --recursive https://github.com/obsproject/obs-studio.git && \
 COPY proto proto
 COPY shows shows
 COPY src src
-COPY compile.sh config.sh config.txt run_server.sh CMakeLists.txt ./
+COPY compile.sh config.sh CMakeLists.txt ./
 RUN ./compile.sh
 
 # Deployment
