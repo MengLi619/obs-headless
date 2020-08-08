@@ -80,3 +80,4 @@ EOF
 ```$shell
 docker run --rm -p 50051:50051 -v $(pwd)/config.txt:/config.txt local/obs-headless:dev
 ```
+# streaming-dummy-publisher
