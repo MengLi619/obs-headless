@@ -80,4 +80,27 @@ EOF
 ```$shell
 docker run --rm -p 50051:50051 -v $(pwd)/config.txt:/config.txt local/obs-headless:dev
 ```
-# streaming-dummy-publisher
+## Debug
+### For VS Code
+1. Open project in conatiner (https://code.visualstudio.com/docs/remote/containers)
+
+2. Run xorg in background `Xorg -noreset +extension GLX +extension RANDR +extension RENDER -config /etc/xorg.conf $DISPLAY &`
+
+3. Compile obs-headless server with debug mode `DEBUG=true ./compile.sh`
+
+4. Add debug configuration in launch.json
+    ```
+    "configurations": [
+        {
+            "name": "debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/obs_headless_server",
+            "cwd": "/root/obs-studio-portable/bin/64bit/",
+            "MIMode": "gdb"
+        }
+    ]
+    ```
+
+5. Add break point, and run debug configuration
+

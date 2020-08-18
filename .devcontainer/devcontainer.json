@@ -1,0 +1,19 @@
+{
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "../Dockerfile.debug",
+		"context": "..",
+		"args": { 
+			"VARIANT": "focal" 
+		}
+	},
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": [
+		"ms-vscode.cpptools"
+	],
+	"forwardPorts": [
+		50051
+	]
+}
