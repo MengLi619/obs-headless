@@ -70,7 +70,7 @@ grpc::Status Source::Start(obs_scene_t** obs_scene_in) {
 
 	if(started) {
 		trace_error("Source already started", field_s(id));
-		return grpc::Status(grpc::FAILED_PRECONDITION, "Source already started");
+		return grpc::Status::OK;
 	}
 
 	// Create the source

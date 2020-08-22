@@ -3,6 +3,8 @@
 #include <jansson.h>
 #include "Scene.hpp"
 
+typedef std::map<std::string, obs_source_t*> TransitionMap;
+
 class Show {
 public:
 	Show(std::string id, std::string name, Settings* settings);
@@ -24,7 +26,7 @@ public:
 	Scene* DuplicateSceneFromShow(Show* show, std::string scene_id);
 	Scene* DuplicateScene(std::string scene_id);
 	grpc::Status RemoveScene(std::string scene_id);
-	grpc::Status SwitchScene(std::string scene_id);
+	grpc::Status SwitchScene(std::string scene_id, std::string transition_type, int transition_duration_ms);
 	grpc::Status UpdateProto(proto::Show* proto_show);
 
 private:
@@ -36,6 +38,7 @@ private:
 	obs_source_t* obs_transition;
 	Settings* settings;
 	uint64_t scene_id_counter;
+	TransitionMap transitions;
 };
 
 typedef std::map<std::string, Show*> ShowMap;

@@ -89,10 +89,8 @@ grpc::Status Scene::Start() {
 	trace_debug("Start scene", field_s(id));
 
 	if(started) {
-		trace_error("Scene already started", field_s(id));
-		return grpc::Status(grpc::FAILED_PRECONDITION, "Scene already started");
+		return grpc::Status::OK;
 	}
-
 
 	// scene (contains the source)
 	std::string scene_name = std::string("obs_scene_"+ id);
@@ -101,7 +99,6 @@ grpc::Status Scene::Start() {
 		trace_error("Error while creating obs_scene", field_s(id));
 		return grpc::Status(grpc::INTERNAL, "Error while creating obs_scene");
 	}
-
 
 	s = active_source->Start(&obs_scene);
 	if(!s.ok()) {

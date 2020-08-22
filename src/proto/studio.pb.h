@@ -1962,12 +1962,34 @@ class SceneSetAsCurrentRequest : public ::google::protobuf::Message /* @@protoc_
   ::std::string* release_scene_id();
   void set_allocated_scene_id(::std::string* scene_id);
 
+  // string transition_type = 3;
+  void clear_transition_type();
+  static const int kTransitionTypeFieldNumber = 3;
+  const ::std::string& transition_type() const;
+  void set_transition_type(const ::std::string& value);
+  #if LANG_CXX11
+  void set_transition_type(::std::string&& value);
+  #endif
+  void set_transition_type(const char* value);
+  void set_transition_type(const char* value, size_t size);
+  ::std::string* mutable_transition_type();
+  ::std::string* release_transition_type();
+  void set_allocated_transition_type(::std::string* transition_type);
+
+  // int32 transition_duration_ms = 4;
+  void clear_transition_duration_ms();
+  static const int kTransitionDurationMsFieldNumber = 4;
+  ::google::protobuf::int32 transition_duration_ms() const;
+  void set_transition_duration_ms(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:proto.SceneSetAsCurrentRequest)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr show_id_;
   ::google::protobuf::internal::ArenaStringPtr scene_id_;
+  ::google::protobuf::internal::ArenaStringPtr transition_type_;
+  ::google::protobuf::int32 transition_duration_ms_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_studio_2eproto::TableStruct;
 };
@@ -6116,6 +6138,73 @@ inline void SceneSetAsCurrentRequest::set_allocated_scene_id(::std::string* scen
   }
   scene_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), scene_id);
   // @@protoc_insertion_point(field_set_allocated:proto.SceneSetAsCurrentRequest.scene_id)
+}
+
+// string transition_type = 3;
+inline void SceneSetAsCurrentRequest::clear_transition_type() {
+  transition_type_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SceneSetAsCurrentRequest::transition_type() const {
+  // @@protoc_insertion_point(field_get:proto.SceneSetAsCurrentRequest.transition_type)
+  return transition_type_.GetNoArena();
+}
+inline void SceneSetAsCurrentRequest::set_transition_type(const ::std::string& value) {
+  
+  transition_type_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:proto.SceneSetAsCurrentRequest.transition_type)
+}
+#if LANG_CXX11
+inline void SceneSetAsCurrentRequest::set_transition_type(::std::string&& value) {
+  
+  transition_type_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:proto.SceneSetAsCurrentRequest.transition_type)
+}
+#endif
+inline void SceneSetAsCurrentRequest::set_transition_type(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  transition_type_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:proto.SceneSetAsCurrentRequest.transition_type)
+}
+inline void SceneSetAsCurrentRequest::set_transition_type(const char* value, size_t size) {
+  
+  transition_type_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:proto.SceneSetAsCurrentRequest.transition_type)
+}
+inline ::std::string* SceneSetAsCurrentRequest::mutable_transition_type() {
+  
+  // @@protoc_insertion_point(field_mutable:proto.SceneSetAsCurrentRequest.transition_type)
+  return transition_type_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SceneSetAsCurrentRequest::release_transition_type() {
+  // @@protoc_insertion_point(field_release:proto.SceneSetAsCurrentRequest.transition_type)
+  
+  return transition_type_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SceneSetAsCurrentRequest::set_allocated_transition_type(::std::string* transition_type) {
+  if (transition_type != NULL) {
+    
+  } else {
+    
+  }
+  transition_type_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), transition_type);
+  // @@protoc_insertion_point(field_set_allocated:proto.SceneSetAsCurrentRequest.transition_type)
+}
+
+// int32 transition_duration_ms = 4;
+inline void SceneSetAsCurrentRequest::clear_transition_duration_ms() {
+  transition_duration_ms_ = 0;
+}
+inline ::google::protobuf::int32 SceneSetAsCurrentRequest::transition_duration_ms() const {
+  // @@protoc_insertion_point(field_get:proto.SceneSetAsCurrentRequest.transition_duration_ms)
+  return transition_duration_ms_;
+}
+inline void SceneSetAsCurrentRequest::set_transition_duration_ms(::google::protobuf::int32 value) {
+  
+  transition_duration_ms_ = value;
+  // @@protoc_insertion_point(field_set:proto.SceneSetAsCurrentRequest.transition_duration_ms)
 }
 
 // -------------------------------------------------------------------

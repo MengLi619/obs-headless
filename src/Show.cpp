@@ -129,14 +129,7 @@ grpc::Status Show::Start() {
 	grpc::Status s;
 
 	if(started) {
-		trace_error("Show already started", field_s(id));
-		return grpc::Status(grpc::FAILED_PRECONDITION, "Show already started");
-	}
-
-	s = active_scene->Start();
-	if(!s.ok()) {
-		trace_error("Scene Start failed", error(s.error_message()));
-		return s;
+		return grpc::Status::OK;
 	}
 
 	// transition (contains the scene)
@@ -146,7 +139,6 @@ grpc::Status Show::Start() {
 		trace_error("Error while creating obs_transition", field_s(id));
 		return grpc::Status(grpc::INTERNAL, "Error while creating obs_transition");
 	}
-	obs_transition_set(obs_transition, obs_scene_get_source(active_scene->GetScene()));
 
 	started = true;
 	return grpc::Status::OK;
@@ -194,9 +186,6 @@ Scene* Show::AddScene(std::string scene_name) {
 
 	trace_debug("Add scene", field_s(scene_id));
 	scenes[scene_id] = scene;
-	if(!active_scene) {
-		active_scene = scene;// TODO need a setActive method
-	}
 	return scene;
 }
 
@@ -254,7 +243,7 @@ grpc::Status Show::RemoveScene(std::string scene_id) {
 	return grpc::Status::OK;
 }
 
-grpc::Status Show::SwitchScene(std::string scene_id) {
+grpc::Status Show::SwitchScene(std::string scene_id, std::string transition_type, int transition_duration_ms) {
 	grpc::Status s;
 	Scene* next = GetScene(scene_id);
 	Scene* curr = active_scene;
@@ -263,9 +252,9 @@ grpc::Status Show::SwitchScene(std::string scene_id) {
 		trace_error("Scene not found", field_s(scene_id));
 		return grpc::Status(grpc::NOT_FOUND, "Scene id not found");
 	}
+	
 	if(next == active_scene) {
-		trace_error("Scene already active", field_s(scene_id));
-		return grpc::Status(grpc::INVALID_ARGUMENT, "scene is already active");
+		return grpc::Status::OK;
 	}
 
 	s = next->Start();
@@ -275,10 +264,23 @@ grpc::Status Show::SwitchScene(std::string scene_id) {
 	}
 
 	trace_debug("start transition");
+	TransitionMap::iterator it = transitions.find(transition_type);
+	if (it == transitions.end()) {
+		transitions[transition_type] = obs_source_create(transition_type.c_str(), transition_type.c_str(), NULL, nullptr);
+	}
+
+	obs_source_t* transition = transitions[transition_type];
+
+	if (curr != NULL) {
+		obs_transition_set(transition, obs_scene_get_source(curr->GetScene()));
+	}
+	
+	obs_set_output_source(0, transition);
+
 	bool ret = obs_transition_start(
-		obs_transition,
+		transition,
 		OBS_TRANSITION_MODE_AUTO,
-		settings->transition_duration_ms,
+		transition_duration_ms,
 		obs_scene_get_source(next->GetScene())
 	);
 
@@ -291,10 +293,12 @@ grpc::Status Show::SwitchScene(std::string scene_id) {
 	Scene* prev = active_scene;
 	active_scene = next;
 
-	s = prev->Stop();
-	if(!s.ok()) {
-		trace_error("Scene Stop failed", error(s.error_message()));
-		return s;
+	if (prev != nullptr) {
+		s = prev->Stop();
+		if(!s.ok()) {
+			trace_error("Scene Stop failed", error(s.error_message()));
+			return s;
+		}
 	}
 
 	return grpc::Status::OK;
@@ -303,6 +307,7 @@ grpc::Status Show::SwitchScene(std::string scene_id) {
 grpc::Status Show::UpdateProto(proto::Show* proto_show) {
 	proto_show->Clear();
 	proto_show->set_id(id);
+	proto_show->set_name(name);
 
 	if(active_scene) {
 		proto_show->set_active_scene_id(active_scene->Id());

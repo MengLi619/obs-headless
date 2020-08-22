@@ -1,7 +1,7 @@
-server rtmp://localhost:1935/live/
-key key
-transition_type cut_transition
-transition_delay_sec 10
+server rtmp://host.docker.internal/live/
+key output
+transition_type fade_transition
+transition_delay_sec 0
 transition_duration_ms 990
 video_hw_decode false
 video_hw_encode false

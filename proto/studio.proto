@@ -155,6 +155,8 @@ message SceneRemoveRequest {
 message SceneSetAsCurrentRequest {
     string show_id = 1;
     string scene_id = 2;
+    string transition_type = 3;
+    int32 transition_duration_ms = 4; 
 }
 
 // SceneGetCurrentRequest represents a get current scene request

@@ -12,6 +12,7 @@ public:
 	std::string Name() { return name; }
 	SourceMap Sources() { return sources; }
 	obs_scene_t* GetScene() { return obs_scene; }
+	bool IsStarted() { return started; }
 
 	// Methods
 	Source* GetSource(std::string source_id);

@@ -438,10 +438,12 @@ Status Studio::SceneSetAsCurrent(ServerContext* ctx, const proto::SceneSetAsCurr
 	try {
 		string show_id = req->show_id();
 		string scene_id = req->scene_id();
+		string transition_type = req->transition_type();
+		int transition_duration_ms = req->transition_duration_ms();
 		Show* show = getShow(show_id);
 
 		if(show) {
-			s = show->SwitchScene(scene_id);
+			s = show->SwitchScene(scene_id, transition_type, transition_duration_ms);
 			if(s.ok()) {
 				proto::Show* proto_show = rep->mutable_show();
 				s = show->UpdateProto(proto_show);
@@ -768,7 +770,7 @@ Status Studio::Health(ServerContext* ctx, const Empty* req, proto::HealthRespons
 Status Studio::studioInit() {
 
 	if(init) {
-		return Status(grpc::FAILED_PRECONDITION, "Studio already initialized");
+		return grpc::Status::OK;
 	}
 
 	///////////////
@@ -928,12 +930,13 @@ Status Studio::studioInit() {
 		return s;
 	}
 
-	obs_set_output_source(0, active_show->Transition());
+	// obs_set_output_source(0, active_show->Transition());
 	obs_encoder_set_video(enc_v, obs_get_video());
 	obs_encoder_set_audio(enc_a, obs_get_audio());
 	obs_output_set_video_encoder(output, enc_v);
 	obs_output_set_audio_encoder(output, enc_a, 0);
 	obs_output_set_service(output, service);
+	obs_output_set_delay(output, settings->transition_delay_sec, 0);
 
 	if(obs_output_start(output) != true) {
 		s = Status(grpc::INTERNAL, "obs_output_start failed: "+ std::string(obs_output_get_last_error(output)));
