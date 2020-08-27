@@ -16,6 +16,7 @@ public:
 	SceneMap Scenes() { return scenes; }
 	Scene* ActiveScene() { return active_scene; }
 	obs_source_t* Transition() { return obs_transition; }
+	obs_scene_t* GetGlobalScene() { return obs_scene; }
 
 	// Methods
 	grpc::Status Load(json_t* json_show);
@@ -36,6 +37,7 @@ private:
 	SceneMap scenes;
 	Scene* active_scene;
 	obs_source_t* obs_transition;
+	obs_scene_t* obs_scene;
 	Settings* settings;
 	uint64_t scene_id_counter;
 	TransitionMap transitions;

@@ -6,6 +6,7 @@ Show::Show(std::string id, std::string name, Settings* settings)
 	, started(false)
 	, settings(settings)
 	, obs_transition(nullptr)
+	, obs_scene(nullptr)
 	, active_scene(nullptr)
 	, scene_id_counter(0) {
 	trace_debug("Create Show", field_s(id), field_s(name));
@@ -140,6 +141,12 @@ grpc::Status Show::Start() {
 		return grpc::Status(grpc::INTERNAL, "Error while creating obs_transition");
 	}
 
+	// create global scene to add all sources, which make all sources read all the time
+	obs_scene = obs_scene_create("global_scene");
+	obs_transition_set(obs_transition, obs_scene_get_source(obs_scene));
+
+	obs_set_output_source(0, obs_transition);
+
 	started = true;
 	return grpc::Status::OK;
 }
@@ -236,7 +243,8 @@ grpc::Status Show::RemoveScene(std::string scene_id) {
 	}
 
 	trace_debug("Remove scene", field_s(scene_id));
-	// No need to do scene->Stop(); because it is not actve
+	
+	it->second->Stop();
 	delete it->second;
 	scenes.erase(it);
 
@@ -255,12 +263,6 @@ grpc::Status Show::SwitchScene(std::string scene_id, std::string transition_type
 	
 	if(next == active_scene) {
 		return grpc::Status::OK;
-	}
-
-	s = next->Start();
-	if(!s.ok()) {
-		trace_error("Scene Start failed", error(s.error_message()));
-		return s;
 	}
 
 	trace_debug("start transition");
@@ -292,14 +294,6 @@ grpc::Status Show::SwitchScene(std::string scene_id, std::string transition_type
 	trace_debug("transition finished");
 	Scene* prev = active_scene;
 	active_scene = next;
-
-	if (prev != nullptr) {
-		s = prev->Stop();
-		if(!s.ok()) {
-			trace_error("Scene Stop failed", error(s.error_message()));
-			return s;
-		}
-	}
 
 	return grpc::Status::OK;
 }

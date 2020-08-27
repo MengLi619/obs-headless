@@ -589,6 +589,15 @@ Status Studio::SourceAdd(ServerContext* ctx, const proto::SourceAddRequest* req,
 						s = source->UpdateProto(proto_source);
 						trace_info("Added source", field_s(show_id), field_s(scene_id), field_s(source_name), field_s(source_url));
 					}
+					// Auto start scene after source is added
+					if (!scene->IsStarted()) {
+						s = scene->Start();
+						if (!s.ok()) {
+							trace_error("Failed to start scene", field_s(scene_id));
+						}
+					}
+					// Add to global scene keep stream read
+					obs_scene_add(show->GetGlobalScene(), source->GetSource());
 				}
 			}
 		}
