@@ -1,12 +1,14 @@
 #include "Show.hpp"
 
+// There will be multiple channles at the same time (one scene is one channel),
+// and RTMP output service will pick the max channel number as the output.
+const int TRANSITION_CHANNEL_INDEX = MAX_CHANNELS - 1;
+
 Show::Show(std::string id, std::string name, Settings* settings)
 	: id(id)
 	, name(name)
 	, started(false)
 	, settings(settings)
-	, obs_transition(nullptr)
-	, obs_scene(nullptr)
 	, active_scene(nullptr)
 	, scene_id_counter(0) {
 	trace_debug("Create Show", field_s(id), field_s(name));
@@ -132,21 +134,7 @@ grpc::Status Show::Start() {
 	if(started) {
 		return grpc::Status::OK;
 	}
-
-	// transition (contains the scene)
-	std::string transition_name = std::string("transition_"+ name);
-	obs_transition = obs_source_create(settings->transition_type.c_str(), transition_name.c_str(), NULL, nullptr);
-	if (!obs_transition) {
-		trace_error("Error while creating obs_transition", field_s(id));
-		return grpc::Status(grpc::INTERNAL, "Error while creating obs_transition");
-	}
-
-	// create global scene to add all sources, which make all sources read all the time
-	obs_scene = obs_scene_create("global_scene");
-	obs_transition_set(obs_transition, obs_scene_get_source(obs_scene));
-
-	obs_set_output_source(0, obs_transition);
-
+	
 	started = true;
 	return grpc::Status::OK;
 }
@@ -165,10 +153,6 @@ grpc::Status Show::Stop() {
 		return s;
 	}
 
-	trace_debug("clear and release obs_transition");
-	obs_transition_clear(obs_transition);
-	obs_source_release(obs_transition);
-
 	started = false;
 	return grpc::Status::OK;
 }
@@ -183,9 +167,8 @@ Scene* Show::GetScene(std::string scene_id) {
 
 Scene* Show::AddScene(std::string scene_name) {
 	std::string scene_id = "scene_"+ std::to_string(scene_id_counter);
-	scene_id_counter++;
-
-	Scene* scene = new Scene(scene_id, scene_name, settings);
+	Scene* scene = new Scene(scene_id, scene_name, settings, scene_id_counter++);
+	
 	if(!scene) {
 		trace_error("Failed to create a scene", field_s(scene_id));
 		return NULL;
@@ -277,7 +260,7 @@ grpc::Status Show::SwitchScene(std::string scene_id, std::string transition_type
 		obs_transition_set(transition, obs_scene_get_source(curr->GetScene()));
 	}
 	
-	obs_set_output_source(0, transition);
+	obs_set_output_source(TRANSITION_CHANNEL_INDEX, transition);
 
 	bool ret = obs_transition_start(
 		transition,

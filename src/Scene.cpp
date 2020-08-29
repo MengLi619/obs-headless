@@ -1,7 +1,8 @@
 #include "Scene.hpp"
 
-Scene::Scene(std::string id, std::string name, Settings* settings)
-	: id(id)
+Scene::Scene(std::string id, std::string name, Settings* settings, int index)
+	: index(index)
+	, id(id)
 	, name(name)
 	, started(false)
 	, obs_scene(nullptr)
@@ -105,6 +106,9 @@ grpc::Status Scene::Start() {
 		trace_error("source Start failed", error(s.error_message()));
 		return s;
 	}
+
+	// This will make scene sources always being read, channel index is same with scene index.
+	obs_set_output_source(index, obs_scene_get_source(obs_scene));
 
 	started = true;
 	return grpc::Status::OK;

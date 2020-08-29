@@ -596,8 +596,6 @@ Status Studio::SourceAdd(ServerContext* ctx, const proto::SourceAddRequest* req,
 							trace_error("Failed to start scene", field_s(scene_id));
 						}
 					}
-					// Add to global scene keep stream read
-					obs_scene_add(show->GetGlobalScene(), source->GetSource());
 				}
 			}
 		}
@@ -939,7 +937,6 @@ Status Studio::studioInit() {
 		return s;
 	}
 
-	// obs_set_output_source(0, active_show->Transition());
 	obs_encoder_set_video(enc_v, obs_get_video());
 	obs_encoder_set_audio(enc_a, obs_get_audio());
 	obs_output_set_video_encoder(output, enc_v);
