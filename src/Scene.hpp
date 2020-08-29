@@ -4,7 +4,7 @@
 
 class Scene {
 public:
-	Scene(std::string id, std::string name, Settings* settings);
+	Scene(std::string id, std::string name, Settings* settings, int index);
 	~Scene();
 
 	// Getters
@@ -25,6 +25,7 @@ public:
 	grpc::Status UpdateProto(proto::Scene* proto_scene);
 
 private:
+	int index;
 	std::string id;
 	std::string name;
 	bool started;
