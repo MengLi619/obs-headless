@@ -258,9 +258,11 @@ grpc::Status Show::SwitchScene(std::string scene_id, std::string transition_type
 
 	if (curr != NULL) {
 		obs_transition_set(transition, obs_scene_get_source(curr->GetScene()));
+		obs_source_set_muted(obs_scene_get_source(curr->GetScene()), true);
 	}
 	
 	obs_set_output_source(TRANSITION_CHANNEL_INDEX, transition);
+	obs_source_set_muted(obs_scene_get_source(next->GetScene()), false);
 
 	bool ret = obs_transition_start(
 		transition,
