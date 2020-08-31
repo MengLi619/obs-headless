@@ -92,6 +92,8 @@ grpc::Status Source::Start(obs_scene_t** obs_scene_in) {
 		obs_data_set_bool(obs_data, "is_local_file", false);
 		obs_data_set_bool(obs_data, "looping", true);
 		obs_data_set_bool(obs_data, "hw_decode", settings->video_hw_decode);
+		obs_data_set_bool(obs_data, "close_when_inactive", false);
+		obs_data_set_bool(obs_data, "restart_on_activate", false);
 
 		std::string source_name = std::string("obs_src_ffmpeg_"+name);
 		obs_source = obs_source_create("ffmpeg_source", source_name.c_str(), obs_data, nullptr);
@@ -119,6 +121,12 @@ grpc::Status Source::Start(obs_scene_t** obs_scene_in) {
 	signal_handler_connect(handler, "transition_start", SourceTransitionStartCb, this);
 	signal_handler_connect(handler, "transition_video_stop", SourceTransitionVideoStopCb, this);
 	signal_handler_connect(handler, "transition_stop", SourceTransitionStopCb, this);
+
+	if(type == RTMP) {
+		// void obs_source_media_play_pause(obs_source_t *source, bool pause)
+		// obs_source_media_play_pause(obs_source, false);
+		// obs_source_media_restart(obs_source);
+	}
 
 	started = true;
 	return grpc::Status::OK;

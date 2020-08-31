@@ -107,10 +107,6 @@ grpc::Status Scene::Start() {
 		return s;
 	}
 
-	// This will make scene sources always being read, channel index is same with scene index.
-	obs_set_output_source(index, obs_scene_get_source(obs_scene));
-	obs_source_set_muted(obs_scene_get_source(obs_scene), true);
-
 	started = true;
 	return grpc::Status::OK;
 }

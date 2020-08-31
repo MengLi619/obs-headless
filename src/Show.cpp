@@ -1,8 +1,5 @@
 #include "Show.hpp"
 
-// There will be multiple channles at the same time (one scene is one channel),
-// and RTMP output service will pick the max channel number as the output.
-const int TRANSITION_CHANNEL_INDEX = MAX_CHANNELS - 1;
 
 Show::Show(std::string id, std::string name, Settings* settings)
 	: id(id)
@@ -258,11 +255,9 @@ grpc::Status Show::SwitchScene(std::string scene_id, std::string transition_type
 
 	if (curr != NULL) {
 		obs_transition_set(transition, obs_scene_get_source(curr->GetScene()));
-		obs_source_set_muted(obs_scene_get_source(curr->GetScene()), true);
 	}
 	
-	obs_set_output_source(TRANSITION_CHANNEL_INDEX, transition);
-	obs_source_set_muted(obs_scene_get_source(next->GetScene()), false);
+	obs_set_output_source(0, transition);
 
 	bool ret = obs_transition_start(
 		transition,
