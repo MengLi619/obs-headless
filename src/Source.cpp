@@ -122,12 +122,6 @@ grpc::Status Source::Start(obs_scene_t** obs_scene_in) {
 	signal_handler_connect(handler, "transition_video_stop", SourceTransitionVideoStopCb, this);
 	signal_handler_connect(handler, "transition_stop", SourceTransitionStopCb, this);
 
-	if(type == RTMP) {
-		// void obs_source_media_play_pause(obs_source_t *source, bool pause)
-		// obs_source_media_play_pause(obs_source, false);
-		// obs_source_media_restart(obs_source);
-	}
-
 	started = true;
 	return grpc::Status::OK;
 }
