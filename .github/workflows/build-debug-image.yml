@@ -16,6 +16,7 @@ jobs:
     - name: Build debug image
       uses: docker/build-push-action@v1
       with:
+        dockerfile: Dockerfile.debug
         username: "${{ secrets.DOCKER_USERNAME }}"
         password: "${{ secrets.DOCKER_PASSWORD }}"
         registry: registry.cn-beijing.aliyuncs.com
