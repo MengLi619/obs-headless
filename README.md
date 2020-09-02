@@ -86,9 +86,9 @@ docker run --rm -p 50051:50051 -v $(pwd)/config.txt:/config.txt local/obs-headle
 
 2. Run xorg in background `Xorg -noreset +extension GLX +extension RANDR +extension RENDER -config /etc/xorg.conf $DISPLAY &`
 
-3. Compile obs-headless server with debug mode `DEBUG=true ./compile.sh`
+3. Compile and run obs-headless `./compile.sh && ./run_server.sh`
 
-4. Add debug configuration in launch.json
+4. (Optional) Add debug configuration in launch.json
     ```
     "configurations": [
         {

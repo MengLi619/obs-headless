@@ -1,12 +1,6 @@
 {
-	"name": "Ubuntu",
-	"build": {
-		"dockerfile": "../Dockerfile.debug",
-		"context": "..",
-		"args": { 
-			"VARIANT": "focal" 
-		}
-	},
+	"name": "obs-headless-debug",
+	"image": "registry.cn-beijing.aliyuncs.com/mengli/obs-headless-debug:latest",
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
