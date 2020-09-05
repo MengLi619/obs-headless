@@ -916,10 +916,10 @@ Status Studio::studioInit() {
 		obs_data_set_int(	enc_v_settings, "fps_den",		settings->video_fps_den);
 		// TODO sw encoder settings
 		// obs_data_set_int(enc_v_settings, "buffer_size",		settings->videoBitrateKbps);
-		obs_data_set_string(enc_v_settings, "preset",		"ultrafast");
-		obs_data_set_string(enc_v_settings, "profile",		"main");
-		obs_data_set_string(enc_v_settings, "tune",			"zerolatency");
-		obs_data_set_string(enc_v_settings, "x264opts",		"");
+		obs_data_set_string(enc_v_settings, "preset",		settings->preset.c_str());
+		obs_data_set_string(enc_v_settings, "profile",		settings->profile.c_str());
+		obs_data_set_string(enc_v_settings, "tune",			settings->tune.c_str());
+		obs_data_set_string(enc_v_settings, "x264opts",		settings->x264opts.c_str());
 		// obs_data_set_bool(enc_v_settings, "use_bufsize",		false);
 		// obs_data_set_int(enc_v_settings, "crf",		0);
 		// #ifdef ENABLE_VFR

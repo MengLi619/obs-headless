@@ -24,6 +24,10 @@ struct Settings {
 
     int audio_sample_rate;
     int audio_bitrate_kbps;
+    string preset;
+    string profile;
+    string tune;
+    string x264opts;
 };
 
 Settings LoadConfig(const string& file);

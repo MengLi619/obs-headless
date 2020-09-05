@@ -15,3 +15,7 @@ video_fps_num 25
 video_fps_den 1
 audio_sample_rate 48000
 audio_bitrate_kbps 128
+preset medium
+profile main
+tune zerolatency
+x264opts 

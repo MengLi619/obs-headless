@@ -54,12 +54,18 @@ Settings LoadConfig(const string& file) {
             iss >> s.video_fps_num;
         } else if(key == "video_fps_den") {
             iss >> s.video_fps_den;
-        }
-        
-        else if(key == "audio_sample_rate") {
+        } else if(key == "audio_sample_rate") {
             iss >> s.audio_sample_rate;
         } else if(key == "audio_bitrate_kbps") {
             iss >> s.audio_bitrate_kbps;
+        } else if(key == "preset") {
+            iss >> s.preset;
+        } else if(key == "prfile") {
+            iss >> s.profile;
+        } else if(key == "tune") {
+            iss >> s.tune;
+        } else if(key == "x264opts") {
+            iss >> s.x264opts;
         } 
     }
 
