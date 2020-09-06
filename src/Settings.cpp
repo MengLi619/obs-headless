@@ -60,7 +60,7 @@ Settings LoadConfig(const string& file) {
             iss >> s.audio_bitrate_kbps;
         } else if(key == "preset") {
             iss >> s.preset;
-        } else if(key == "prfile") {
+        } else if(key == "profile") {
             iss >> s.profile;
         } else if(key == "tune") {
             iss >> s.tune;
@@ -101,7 +101,10 @@ Settings LoadConfig(const string& file) {
     trace_debug("", field(s.video_fps_den));
     trace_debug("", field(s.audio_sample_rate));
     trace_debug("", field(s.audio_bitrate_kbps));
-
+    trace_debug("", field_s(s.preset));
+    trace_debug("", field_s(s.profile));
+    trace_debug("", field_s(s.tune));
+    trace_debug("", field_s(s.x264opts));
 
     return s;
 }
