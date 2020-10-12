@@ -288,6 +288,9 @@ public:
 	// Misc
 	Status Health(ServerContext* ctx, const Empty* req, proto::HealthResponse* rep) override;
 
+	Show* loadShow(string show_path);
+	void start();
+
 private:
 	//Initializes obs: reset video and audio context, load modules libs, create RTMP output and encoders. Then starts the currently active show.
 	Status studioInit();
@@ -295,7 +298,6 @@ private:
 	Status studioRelease();
 	Show* getShow(string show_id);
 	Show* addShow(string show_name);
-	Show* loadShow(string show_id);
 	Show* duplicateShow(string show_id);
 	Status removeShow(string show_id);
 	int loadModule(const char* binPath, const char* dataPath);

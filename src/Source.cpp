@@ -19,11 +19,12 @@ SourceType StringToSourceType(std::string type) {
 	return InvalidType;
 }
 
-Source::Source(std::string id, std::string name, SourceType type, std::string url, Settings* settings)
+Source::Source(std::string id, std::string name, SourceType type, std::string url, std::string source_preview_url, Settings* settings)
 	: id(id)
 	, name(name)
 	, type(type)
 	, url(url)
+	, preview_url(source_preview_url)
 	, started(false)
 	, obs_source(nullptr)
 	, obs_scene_ptr(nullptr)
@@ -215,6 +216,7 @@ grpc::Status Source::UpdateProto(proto::Source* proto_source) {
 	proto_source->set_name(name);
 	proto_source->set_type(SourceTypeToString(type));
 	proto_source->set_url(url);
+	proto_source->set_preview_url(preview_url);
 	return grpc::Status::OK;
 }
 

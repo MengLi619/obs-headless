@@ -775,6 +775,20 @@ class Source : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* release_url();
   void set_allocated_url(::std::string* url);
 
+  // string preview_url = 5;
+  void clear_preview_url();
+  static const int kPreviewUrlFieldNumber = 5;
+  const ::std::string& preview_url() const;
+  void set_preview_url(const ::std::string& value);
+  #if LANG_CXX11
+  void set_preview_url(::std::string&& value);
+  #endif
+  void set_preview_url(const char* value);
+  void set_preview_url(const char* value, size_t size);
+  ::std::string* mutable_preview_url();
+  ::std::string* release_preview_url();
+  void set_allocated_preview_url(::std::string* preview_url);
+
   // @@protoc_insertion_point(class_scope:proto.Source)
  private:
 
@@ -783,6 +797,7 @@ class Source : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::google::protobuf::internal::ArenaStringPtr name_;
   ::google::protobuf::internal::ArenaStringPtr type_;
   ::google::protobuf::internal::ArenaStringPtr url_;
+  ::google::protobuf::internal::ArenaStringPtr preview_url_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_studio_2eproto::TableStruct;
 };
@@ -2404,6 +2419,20 @@ class SourceAddRequest : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* release_source_url();
   void set_allocated_source_url(::std::string* source_url);
 
+  // string source_preview_url = 6;
+  void clear_source_preview_url();
+  static const int kSourcePreviewUrlFieldNumber = 6;
+  const ::std::string& source_preview_url() const;
+  void set_source_preview_url(const ::std::string& value);
+  #if LANG_CXX11
+  void set_source_preview_url(::std::string&& value);
+  #endif
+  void set_source_preview_url(const char* value);
+  void set_source_preview_url(const char* value, size_t size);
+  ::std::string* mutable_source_preview_url();
+  ::std::string* release_source_preview_url();
+  void set_allocated_source_preview_url(::std::string* source_preview_url);
+
   // @@protoc_insertion_point(class_scope:proto.SourceAddRequest)
  private:
 
@@ -2413,6 +2442,7 @@ class SourceAddRequest : public ::google::protobuf::Message /* @@protoc_insertio
   ::google::protobuf::internal::ArenaStringPtr source_name_;
   ::google::protobuf::internal::ArenaStringPtr source_type_;
   ::google::protobuf::internal::ArenaStringPtr source_url_;
+  ::google::protobuf::internal::ArenaStringPtr source_preview_url_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_studio_2eproto::TableStruct;
 };
@@ -5305,6 +5335,59 @@ inline void Source::set_allocated_url(::std::string* url) {
   // @@protoc_insertion_point(field_set_allocated:proto.Source.url)
 }
 
+// string preview_url = 5;
+inline void Source::clear_preview_url() {
+  preview_url_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Source::preview_url() const {
+  // @@protoc_insertion_point(field_get:proto.Source.preview_url)
+  return preview_url_.GetNoArena();
+}
+inline void Source::set_preview_url(const ::std::string& value) {
+  
+  preview_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:proto.Source.preview_url)
+}
+#if LANG_CXX11
+inline void Source::set_preview_url(::std::string&& value) {
+  
+  preview_url_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:proto.Source.preview_url)
+}
+#endif
+inline void Source::set_preview_url(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  preview_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:proto.Source.preview_url)
+}
+inline void Source::set_preview_url(const char* value, size_t size) {
+  
+  preview_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:proto.Source.preview_url)
+}
+inline ::std::string* Source::mutable_preview_url() {
+  
+  // @@protoc_insertion_point(field_mutable:proto.Source.preview_url)
+  return preview_url_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Source::release_preview_url() {
+  // @@protoc_insertion_point(field_release:proto.Source.preview_url)
+  
+  return preview_url_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Source::set_allocated_preview_url(::std::string* preview_url) {
+  if (preview_url != NULL) {
+    
+  } else {
+    
+  }
+  preview_url_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), preview_url);
+  // @@protoc_insertion_point(field_set_allocated:proto.Source.preview_url)
+}
+
 // -------------------------------------------------------------------
 
 // ShowGetRequest
@@ -6694,6 +6777,59 @@ inline void SourceAddRequest::set_allocated_source_url(::std::string* source_url
   }
   source_url_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), source_url);
   // @@protoc_insertion_point(field_set_allocated:proto.SourceAddRequest.source_url)
+}
+
+// string source_preview_url = 6;
+inline void SourceAddRequest::clear_source_preview_url() {
+  source_preview_url_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SourceAddRequest::source_preview_url() const {
+  // @@protoc_insertion_point(field_get:proto.SourceAddRequest.source_preview_url)
+  return source_preview_url_.GetNoArena();
+}
+inline void SourceAddRequest::set_source_preview_url(const ::std::string& value) {
+  
+  source_preview_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:proto.SourceAddRequest.source_preview_url)
+}
+#if LANG_CXX11
+inline void SourceAddRequest::set_source_preview_url(::std::string&& value) {
+  
+  source_preview_url_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:proto.SourceAddRequest.source_preview_url)
+}
+#endif
+inline void SourceAddRequest::set_source_preview_url(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  source_preview_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:proto.SourceAddRequest.source_preview_url)
+}
+inline void SourceAddRequest::set_source_preview_url(const char* value, size_t size) {
+  
+  source_preview_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:proto.SourceAddRequest.source_preview_url)
+}
+inline ::std::string* SourceAddRequest::mutable_source_preview_url() {
+  
+  // @@protoc_insertion_point(field_mutable:proto.SourceAddRequest.source_preview_url)
+  return source_preview_url_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SourceAddRequest::release_source_preview_url() {
+  // @@protoc_insertion_point(field_release:proto.SourceAddRequest.source_preview_url)
+  
+  return source_preview_url_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SourceAddRequest::set_allocated_source_preview_url(::std::string* source_preview_url) {
+  if (source_preview_url != NULL) {
+    
+  } else {
+    
+  }
+  source_preview_url_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), source_preview_url);
+  // @@protoc_insertion_point(field_set_allocated:proto.SourceAddRequest.source_preview_url)
 }
 
 // -------------------------------------------------------------------

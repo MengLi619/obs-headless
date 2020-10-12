@@ -562,6 +562,7 @@ Status Studio::SourceAdd(ServerContext* ctx, const proto::SourceAddRequest* req,
 		string source_name = req->source_name();
 		string source_type = req->source_type();
 		string source_url = req->source_url();
+		string source_preview_url = req->source_preview_url();
 		Show* show = getShow(show_id);
 
 		SourceType type = StringToSourceType(source_type);
@@ -580,7 +581,7 @@ Status Studio::SourceAdd(ServerContext* ctx, const proto::SourceAddRequest* req,
 					trace_error("Scene not found", field_s(scene_id));
 					s = Status(grpc::NOT_FOUND, "Scene not found id="+ scene_id);
 				} else {
-					Source* source = scene->AddSource(source_name, type, source_url);
+					Source* source = scene->AddSource(source_name, type, source_url, source_preview_url);
 					if(!source) {
 						trace_error("Failed to add source", field_s(source_name));
 						s = Status(grpc::INTERNAL, "Failed to add source");
@@ -1000,22 +1001,22 @@ Show* Studio::addShow(string show_name) {
 	return show;
 }
 
-Show* Studio::loadShow(string show_id) {
+Show* Studio::loadShow(string show_path) {
 	Status s;
 	Show* show;
 	json_t* json_show;
 	json_error_t error;
 
-	json_show = json_load_file(show_id.c_str(), 0, &error);
+	json_show = json_load_file(show_path.c_str(), 0, &error);
 	if(!json_show) {
-		trace_error("Error while loading json config", field_s(show_id), field_nc("error", error.text));
+		trace_error("Error while loading json config", field_s(show_path), field_nc("error", error.text));
 		return NULL;
 	}
 
-	show = addShow(show_id);
+	show = addShow(show_path);
 	if(!show) {
 		json_decref(json_show);
-		trace_error("Error while creating show", field_s(show_id));
+		trace_error("Error while creating show", field_s(show_path));
 		return NULL;
 	}
 
@@ -1029,6 +1030,13 @@ Show* Studio::loadShow(string show_id) {
 	}
 
 	return show;
+}
+
+void Studio::start() {
+	Status s = this->studioInit();
+	if(!s.ok()) {
+		trace_error("Error to init studio", error(s.error_message()));
+	}
 }
 
 Show* Studio::duplicateShow(string show_id) {

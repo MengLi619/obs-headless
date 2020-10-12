@@ -28,11 +28,11 @@ Source* Scene::GetSource(std::string source_id) {
 }
 
 
-Source* Scene::AddSource(std::string source_name, SourceType type, std::string source_url) {
+Source* Scene::AddSource(std::string source_name, SourceType type, std::string source_url, std::string source_preview_url) {
 	std::string source_id = "source_"+ std::to_string(source_id_counter);
 	source_id_counter++;
 
-	Source* source = new Source(source_id, source_name, type, source_url, settings);
+	Source* source = new Source(source_id, source_name, type, source_url, source_preview_url, settings);
 	if(!source) {
 		trace_error("Failed to create a source", field_s(source_id));
 		return NULL;
@@ -53,7 +53,7 @@ Source* Scene::DuplicateSourceFromScene(Scene* scene, std::string source_id) {
 		return NULL;
 	}
 
-	Source* new_source = AddSource(source->Name(), source->Type(), source->Url());
+	Source* new_source = AddSource(source->Name(), source->Type(), source->Url(), source->PreviewUrl());
 	if(!new_source) {
 		trace_error("Failed to duplicate source");
 		return NULL;
@@ -94,14 +94,18 @@ grpc::Status Scene::Start() {
 	}
 
 	// scene (contains the source)
-	std::string scene_name = std::string("obs_scene_"+ id);
+	std::string scene_name = std::string("obs_scene_" + id);
+	trace_debug("before obs_scene_create");
 	obs_scene = obs_scene_create(scene_name.c_str());
+	trace_debug("after obs_scene_create");
 	if (!obs_scene) {
 		trace_error("Error while creating obs_scene", field_s(id));
 		return grpc::Status(grpc::INTERNAL, "Error while creating obs_scene");
 	}
 
+	trace_debug("Start active source");
 	s = active_source->Start(&obs_scene);
+	trace_debug("Started active source");
 	if(!s.ok()) {
 		trace_error("source Start failed", error(s.error_message()));
 		return s;

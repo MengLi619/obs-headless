@@ -96,6 +96,7 @@ message Source {
     string name = 2;
     string type = 3;
     string url = 4;
+    string preview_url = 5;
 }
 
 //////////////
@@ -178,6 +179,7 @@ message SourceAddRequest {
     string source_name = 3;
     string source_type = 4;
     string source_url = 5;
+    string source_preview_url = 6;
 }
 
 // SourceDuplicateRequest represents a request to duplicate a source

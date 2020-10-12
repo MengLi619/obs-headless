@@ -96,6 +96,18 @@ grpc::Status Show::Load(json_t* jsonShow) {
 				return grpc::Status(grpc::INVALID_ARGUMENT, "Can't read source url sceneIdx="+ std::to_string(sceneIdx) +", sourceIdx="+ std::to_string(sourceIdx));
 			}
 
+			json_t* jsonSourcePreviewUrl = json_object_get(jsonSource, "preview_url");
+			if(!jsonSourcePreviewUrl) {
+				trace_error("Source preview url not found in json", field(sceneIdx), field(sourceIdx));
+				return grpc::Status(grpc::INVALID_ARGUMENT, "Source preview url not found in config file sceneIdx="+ std::to_string(sceneIdx) +", sourceIdx="+ std::to_string(sourceIdx));
+			}
+
+			const char* strSourcePreviewUrl = json_string_value(jsonSourcePreviewUrl);
+			if(!strSourcePreviewUrl) {
+				trace_error("Can't read source preview url", field(sceneIdx), field(sourceIdx));
+				return grpc::Status(grpc::INVALID_ARGUMENT, "Can't read source preview url sceneIdx="+ std::to_string(sceneIdx) +", sourceIdx="+ std::to_string(sourceIdx));
+			}
+
 			json_t* jsonSourceType = json_object_get(jsonSource, "type");
 			if(!jsonSourceType) {
 				trace_error("Source type not found in json", field(sceneIdx), field(sourceIdx));
@@ -114,7 +126,7 @@ grpc::Status Show::Load(json_t* jsonShow) {
 				return grpc::Status(grpc::INVALID_ARGUMENT, "Unsupported source type="+ std::string(strSourceType));
 			}
 
-			Source* source = scene->AddSource(std::string(strSourceName), type, std::string(strSourceUrl));
+			Source* source = scene->AddSource(std::string(strSourceName), type, std::string(strSourceUrl), std::string(strSourcePreviewUrl));
 			if(!source) {
 				trace_error("Failed to add source", field(sceneIdx), field(sourceIdx));
 				return grpc::Status(grpc::INVALID_ARGUMENT, "Failed to add source sceneIdx="+ std::to_string(sceneIdx) +", sourceIdx="+ std::to_string(sourceIdx));
@@ -130,6 +142,15 @@ grpc::Status Show::Start() {
 
 	if(started) {
 		return grpc::Status::OK;
+	}
+
+	for (auto it = scenes.begin(); it != scenes.end(); it++) {
+		Scene* scene = it->second;
+		s = scene->Start();
+		if(!s.ok()) {
+			trace_error("Failed to start scene", field_ns("id", scene->Id()), field_ns("name", scene->Name()));
+			return s;
+		}
 	}
 	
 	started = true;

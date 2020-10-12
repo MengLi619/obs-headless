@@ -20,7 +20,7 @@ SourceType StringToSourceType(std::string type);
 
 class Source {
 public:
-	Source(std::string id, std::string name, SourceType type, std::string url, Settings* settings);
+	Source(std::string id, std::string name, SourceType type, std::string url, std::string source_preview_url, Settings* settings);
 	~Source();
 
 	// Getters
@@ -28,6 +28,7 @@ public:
 	std::string Name() { return name; }
 	SourceType Type() { return type; }
 	std::string Url() { return url; }
+	std::string PreviewUrl() { return preview_url; }
 	obs_source_t* GetSource() { return obs_source; }
 
 	// Methods
@@ -46,6 +47,7 @@ private:
 	std::string name;
 	SourceType type;
 	std::string url;
+	std::string preview_url;
 	bool started;
 	obs_source_t* obs_source;
 	obs_scene_t** obs_scene_ptr;

@@ -4,6 +4,8 @@
 using namespace std;
 
 struct Settings {
+    string show_name;
+    
     string server;
     string key;
 
