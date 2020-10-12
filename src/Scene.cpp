@@ -95,17 +95,13 @@ grpc::Status Scene::Start() {
 
 	// scene (contains the source)
 	std::string scene_name = std::string("obs_scene_" + id);
-	trace_debug("before obs_scene_create");
 	obs_scene = obs_scene_create(scene_name.c_str());
-	trace_debug("after obs_scene_create");
 	if (!obs_scene) {
 		trace_error("Error while creating obs_scene", field_s(id));
 		return grpc::Status(grpc::INTERNAL, "Error while creating obs_scene");
 	}
 
-	trace_debug("Start active source");
 	s = active_source->Start(&obs_scene);
-	trace_debug("Started active source");
 	if(!s.ok()) {
 		trace_error("source Start failed", error(s.error_message()));
 		return s;
