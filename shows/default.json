@@ -1,23 +1,25 @@
 {
-    "name": "DefaultShow",
+    "name": "default",
     "scenes": [
         {
-            "name": "RTMP A",
+            "name": "scene1",
             "sources": [
                 {
-                    "name": "source A",
+                    "name": "source1",
                     "type": "RTMP",
-                    "url": "rtmp://localhost:1936/source_a"
+                    "url": "rtmp://host.docker.internal/live/source1",
+                    "preview_url": "rtmp://host.docker.internal/live/source1"
                 }
             ]
         },
         {
-            "name": "RTMP B",
+            "name": "scene2",
             "sources": [
                 {
-                    "name": "source B",
+                    "name": "source2",
                     "type": "RTMP",
-                    "url": "rtmp://localhost:1936/source_a"
+                    "url": "rtmp://host.docker.internal/live/source2",
+                    "preview_url": "rtmp://host.docker.internal/live/source2"
                 }
             ]
         }

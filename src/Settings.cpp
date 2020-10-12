@@ -20,7 +20,9 @@ Settings LoadConfig(const string& file) {
         string key;
         iss >> key;
         
-        if(key == "server") {
+        if (key == "show_name") {
+            iss >> s.show_name;
+        } else if(key == "server") {
             iss >> s.server;
         } else if(key == "key") {
             iss >> s.key;
@@ -83,7 +85,7 @@ Settings LoadConfig(const string& file) {
     }
 
     // TODO more checks
-
+    trace_debug("", field_s(s.show_name));
     trace_debug("", field_s(s.server));
     trace_debug("", field_s(s.key));
     trace_debug("", field_s(s.transition_type));

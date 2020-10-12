@@ -1,3 +1,4 @@
+show_name default
 server rtmp://host.docker.internal/live/
 key output
 transition_type fade_transition
