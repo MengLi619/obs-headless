@@ -285,6 +285,20 @@ public:
 	// TODO doc
 	Status SourceSetProperties(ServerContext* ctx, const proto::SourceSetPropertiesRequest* req, proto::SourceSetPropertiesResponse* rep) override;
 
+	/**
+	 * Removes a given source from a given scene in a given show.
+	 *
+	 * @param   ctx  pointer to the gRPC server context.
+	 * @param   req  SourceRestartRequest containing the show_id and scene_id
+	 *               that contain the source_id to remove.
+	 * @param   rep  Empty response gRPC type.
+	 * @return       grpc::Status::OK if successful
+	 *               grpc::Status::NOT_FOUND if show_id, scene_id or source_id is not found
+	 *               grpc::Status::FAILED_PRECONDITION if the source is active
+	 *               grpc::Status::INTERNAL if an exception occured
+	 */
+	Status SourceRestart(ServerContext* ctx, const proto::SourceRestartRequest* req, Empty* rep) override;
+
 	// Misc
 	Status Health(ServerContext* ctx, const Empty* req, proto::HealthResponse* rep) override;
 

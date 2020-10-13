@@ -87,6 +87,19 @@ grpc::Status Scene::RemoveSource(std::string source_id) {
 	return grpc::Status::OK;
 }
 
+grpc::Status Scene::RestartSource(std::string source_id) {
+	SourceMap::iterator it = sources.find(source_id);
+	if(it == sources.end()) {
+		trace_error("Source not found", field_s(source_id));
+		return grpc::Status(grpc::NOT_FOUND, "Source not found id="+ source_id);
+	}
+
+	it->second->Stop();
+	it->second->Start(&obs_scene);
+
+	return grpc::Status::OK;
+}
+
 grpc::Status Scene::Start() {
 	grpc::Status s;
 	trace_debug("Start scene", field_s(id));

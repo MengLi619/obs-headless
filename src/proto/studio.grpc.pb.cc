@@ -37,6 +37,7 @@ static const char* Studio_method_names[] = {
   "/proto.Studio/SourceDuplicate",
   "/proto.Studio/SourceRemove",
   "/proto.Studio/SourceSetProperties",
+  "/proto.Studio/SourceRestart",
   "/proto.Studio/Health",
 };
 
@@ -66,7 +67,8 @@ Studio::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_SourceDuplicate_(Studio_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SourceRemove_(Studio_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SourceSetProperties_(Studio_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Health_(Studio_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SourceRestart_(Studio_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Health_(Studio_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Studio::Stub::StudioGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::proto::StudioGetResponse* response) {
@@ -373,6 +375,22 @@ void Studio::Stub::experimental_async::SourceSetProperties(::grpc::ClientContext
   return ::grpc::internal::ClientAsyncResponseReaderFactory< ::proto::SourceSetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_SourceSetProperties_, context, request, false);
 }
 
+::grpc::Status Studio::Stub::SourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SourceRestart_, context, request, response);
+}
+
+void Studio::Stub::experimental_async::SourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  return ::grpc::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SourceRestart_, context, request, response, std::move(f));
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Studio::Stub::AsyncSourceRestartRaw(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::google::protobuf::Empty>::Create(channel_.get(), cq, rpcmethod_SourceRestart_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Studio::Stub::PrepareAsyncSourceRestartRaw(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::google::protobuf::Empty>::Create(channel_.get(), cq, rpcmethod_SourceRestart_, context, request, false);
+}
+
 ::grpc::Status Studio::Stub::Health(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::proto::HealthResponse* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Health_, context, request, response);
 }
@@ -487,6 +505,11 @@ Studio::Service::Service() {
           std::mem_fn(&Studio::Service::SourceSetProperties), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Studio_method_names[19],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Studio::Service, ::proto::SourceRestartRequest, ::google::protobuf::Empty>(
+          std::mem_fn(&Studio::Service::SourceRestart), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Studio_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Studio::Service, ::google::protobuf::Empty, ::proto::HealthResponse>(
           std::mem_fn(&Studio::Service::Health), this)));
@@ -622,6 +645,13 @@ Studio::Service::~Service() {
 }
 
 ::grpc::Status Studio::Service::SourceSetProperties(::grpc::ServerContext* context, const ::proto::SourceSetPropertiesRequest* request, ::proto::SourceSetPropertiesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Studio::Service::SourceRestart(::grpc::ServerContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
