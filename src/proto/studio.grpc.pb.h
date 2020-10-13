@@ -177,6 +177,13 @@ class Studio final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::SourceSetPropertiesResponse>> PrepareAsyncSourceSetProperties(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::SourceSetPropertiesResponse>>(PrepareAsyncSourceSetPropertiesRaw(context, request, cq));
     }
+    virtual ::grpc::Status SourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSourceRestartRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSourceRestartRaw(context, request, cq));
+    }
     virtual ::grpc::Status Health(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::proto::HealthResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::HealthResponse>> AsyncHealth(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::HealthResponse>>(AsyncHealthRaw(context, request, cq));
@@ -210,6 +217,7 @@ class Studio final {
       virtual void SourceDuplicate(::grpc::ClientContext* context, const ::proto::SourceDuplicateRequest* request, ::proto::SourceDuplicateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SourceRemove(::grpc::ClientContext* context, const ::proto::SourceRemoveRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SourceSetProperties(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest* request, ::proto::SourceSetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Health(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::proto::HealthResponse* response, std::function<void(::grpc::Status)>) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
@@ -252,6 +260,8 @@ class Studio final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSourceRemoveRaw(::grpc::ClientContext* context, const ::proto::SourceRemoveRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::SourceSetPropertiesResponse>* AsyncSourceSetPropertiesRaw(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::SourceSetPropertiesResponse>* PrepareAsyncSourceSetPropertiesRaw(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSourceRestartRaw(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSourceRestartRaw(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::HealthResponse>* AsyncHealthRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::HealthResponse>* PrepareAsyncHealthRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -391,6 +401,13 @@ class Studio final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::SourceSetPropertiesResponse>> PrepareAsyncSourceSetProperties(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::SourceSetPropertiesResponse>>(PrepareAsyncSourceSetPropertiesRaw(context, request, cq));
     }
+    ::grpc::Status SourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSourceRestartRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSourceRestartRaw(context, request, cq));
+    }
     ::grpc::Status Health(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::proto::HealthResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::HealthResponse>> AsyncHealth(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::HealthResponse>>(AsyncHealthRaw(context, request, cq));
@@ -420,6 +437,7 @@ class Studio final {
       void SourceDuplicate(::grpc::ClientContext* context, const ::proto::SourceDuplicateRequest* request, ::proto::SourceDuplicateResponse* response, std::function<void(::grpc::Status)>) override;
       void SourceRemove(::grpc::ClientContext* context, const ::proto::SourceRemoveRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void SourceSetProperties(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest* request, ::proto::SourceSetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void SourceRestart(::grpc::ClientContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void Health(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::proto::HealthResponse* response, std::function<void(::grpc::Status)>) override;
      private:
       friend class Stub;
@@ -470,6 +488,8 @@ class Studio final {
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSourceRemoveRaw(::grpc::ClientContext* context, const ::proto::SourceRemoveRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::SourceSetPropertiesResponse>* AsyncSourceSetPropertiesRaw(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::SourceSetPropertiesResponse>* PrepareAsyncSourceSetPropertiesRaw(::grpc::ClientContext* context, const ::proto::SourceSetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSourceRestartRaw(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSourceRestartRaw(::grpc::ClientContext* context, const ::proto::SourceRestartRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::HealthResponse>* AsyncHealthRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::HealthResponse>* PrepareAsyncHealthRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_StudioGet_;
@@ -491,6 +511,7 @@ class Studio final {
     const ::grpc::internal::RpcMethod rpcmethod_SourceDuplicate_;
     const ::grpc::internal::RpcMethod rpcmethod_SourceRemove_;
     const ::grpc::internal::RpcMethod rpcmethod_SourceSetProperties_;
+    const ::grpc::internal::RpcMethod rpcmethod_SourceRestart_;
     const ::grpc::internal::RpcMethod rpcmethod_Health_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -522,6 +543,7 @@ class Studio final {
     virtual ::grpc::Status SourceDuplicate(::grpc::ServerContext* context, const ::proto::SourceDuplicateRequest* request, ::proto::SourceDuplicateResponse* response);
     virtual ::grpc::Status SourceRemove(::grpc::ServerContext* context, const ::proto::SourceRemoveRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status SourceSetProperties(::grpc::ServerContext* context, const ::proto::SourceSetPropertiesRequest* request, ::proto::SourceSetPropertiesResponse* response);
+    virtual ::grpc::Status SourceRestart(::grpc::ServerContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status Health(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::proto::HealthResponse* response);
   };
   template <class BaseClass>
@@ -905,12 +927,32 @@ class Studio final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_SourceRestart : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_SourceRestart() {
+      ::grpc::Service::MarkMethodAsync(19);
+    }
+    ~WithAsyncMethod_SourceRestart() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SourceRestart(::grpc::ServerContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSourceRestart(::grpc::ServerContext* context, ::proto::SourceRestartRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_Health : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_Health() {
-      ::grpc::Service::MarkMethodAsync(19);
+      ::grpc::Service::MarkMethodAsync(20);
     }
     ~WithAsyncMethod_Health() override {
       BaseClassMustBeDerivedFromService(this);
@@ -921,10 +963,10 @@ class Studio final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHealth(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::proto::HealthResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_StudioGet<WithAsyncMethod_StudioStart<WithAsyncMethod_StudioStop<WithAsyncMethod_ShowGet<WithAsyncMethod_ShowCreate<WithAsyncMethod_ShowDuplicate<WithAsyncMethod_ShowRemove<WithAsyncMethod_ShowLoad<WithAsyncMethod_SceneGet<WithAsyncMethod_SceneAdd<WithAsyncMethod_SceneDuplicate<WithAsyncMethod_SceneRemove<WithAsyncMethod_SceneSetAsCurrent<WithAsyncMethod_SceneGetCurrent<WithAsyncMethod_SourceGet<WithAsyncMethod_SourceAdd<WithAsyncMethod_SourceDuplicate<WithAsyncMethod_SourceRemove<WithAsyncMethod_SourceSetProperties<WithAsyncMethod_Health<Service > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_StudioGet<WithAsyncMethod_StudioStart<WithAsyncMethod_StudioStop<WithAsyncMethod_ShowGet<WithAsyncMethod_ShowCreate<WithAsyncMethod_ShowDuplicate<WithAsyncMethod_ShowRemove<WithAsyncMethod_ShowLoad<WithAsyncMethod_SceneGet<WithAsyncMethod_SceneAdd<WithAsyncMethod_SceneDuplicate<WithAsyncMethod_SceneRemove<WithAsyncMethod_SceneSetAsCurrent<WithAsyncMethod_SceneGetCurrent<WithAsyncMethod_SourceGet<WithAsyncMethod_SourceAdd<WithAsyncMethod_SourceDuplicate<WithAsyncMethod_SourceRemove<WithAsyncMethod_SourceSetProperties<WithAsyncMethod_SourceRestart<WithAsyncMethod_Health<Service > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithGenericMethod_StudioGet : public BaseClass {
    private:
@@ -1249,12 +1291,29 @@ class Studio final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SourceRestart : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_SourceRestart() {
+      ::grpc::Service::MarkMethodGeneric(19);
+    }
+    ~WithGenericMethod_SourceRestart() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SourceRestart(::grpc::ServerContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Health : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_Health() {
-      ::grpc::Service::MarkMethodGeneric(19);
+      ::grpc::Service::MarkMethodGeneric(20);
     }
     ~WithGenericMethod_Health() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1646,12 +1705,32 @@ class Studio final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_SourceRestart : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_SourceRestart() {
+      ::grpc::Service::MarkMethodRaw(19);
+    }
+    ~WithRawMethod_SourceRestart() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SourceRestart(::grpc::ServerContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSourceRestart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_Health : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_Health() {
-      ::grpc::Service::MarkMethodRaw(19);
+      ::grpc::Service::MarkMethodRaw(20);
     }
     ~WithRawMethod_Health() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1662,7 +1741,7 @@ class Studio final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHealth(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2046,12 +2125,32 @@ class Studio final {
     virtual ::grpc::Status StreamedSourceSetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::proto::SourceSetPropertiesRequest,::proto::SourceSetPropertiesResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SourceRestart : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_SourceRestart() {
+      ::grpc::Service::MarkMethodStreamed(19,
+        new ::grpc::internal::StreamedUnaryHandler< ::proto::SourceRestartRequest, ::google::protobuf::Empty>(std::bind(&WithStreamedUnaryMethod_SourceRestart<BaseClass>::StreamedSourceRestart, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_SourceRestart() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SourceRestart(::grpc::ServerContext* context, const ::proto::SourceRestartRequest* request, ::google::protobuf::Empty* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSourceRestart(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::proto::SourceRestartRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Health : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_Health() {
-      ::grpc::Service::MarkMethodStreamed(19,
+      ::grpc::Service::MarkMethodStreamed(20,
         new ::grpc::internal::StreamedUnaryHandler< ::google::protobuf::Empty, ::proto::HealthResponse>(std::bind(&WithStreamedUnaryMethod_Health<BaseClass>::StreamedHealth, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_Health() override {
@@ -2065,9 +2164,9 @@ class Studio final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedHealth(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::proto::HealthResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_StudioGet<WithStreamedUnaryMethod_StudioStart<WithStreamedUnaryMethod_StudioStop<WithStreamedUnaryMethod_ShowGet<WithStreamedUnaryMethod_ShowCreate<WithStreamedUnaryMethod_ShowDuplicate<WithStreamedUnaryMethod_ShowRemove<WithStreamedUnaryMethod_ShowLoad<WithStreamedUnaryMethod_SceneGet<WithStreamedUnaryMethod_SceneAdd<WithStreamedUnaryMethod_SceneDuplicate<WithStreamedUnaryMethod_SceneRemove<WithStreamedUnaryMethod_SceneSetAsCurrent<WithStreamedUnaryMethod_SceneGetCurrent<WithStreamedUnaryMethod_SourceGet<WithStreamedUnaryMethod_SourceAdd<WithStreamedUnaryMethod_SourceDuplicate<WithStreamedUnaryMethod_SourceRemove<WithStreamedUnaryMethod_SourceSetProperties<WithStreamedUnaryMethod_Health<Service > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_StudioGet<WithStreamedUnaryMethod_StudioStart<WithStreamedUnaryMethod_StudioStop<WithStreamedUnaryMethod_ShowGet<WithStreamedUnaryMethod_ShowCreate<WithStreamedUnaryMethod_ShowDuplicate<WithStreamedUnaryMethod_ShowRemove<WithStreamedUnaryMethod_ShowLoad<WithStreamedUnaryMethod_SceneGet<WithStreamedUnaryMethod_SceneAdd<WithStreamedUnaryMethod_SceneDuplicate<WithStreamedUnaryMethod_SceneRemove<WithStreamedUnaryMethod_SceneSetAsCurrent<WithStreamedUnaryMethod_SceneGetCurrent<WithStreamedUnaryMethod_SourceGet<WithStreamedUnaryMethod_SourceAdd<WithStreamedUnaryMethod_SourceDuplicate<WithStreamedUnaryMethod_SourceRemove<WithStreamedUnaryMethod_SourceSetProperties<WithStreamedUnaryMethod_SourceRestart<WithStreamedUnaryMethod_Health<Service > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_StudioGet<WithStreamedUnaryMethod_StudioStart<WithStreamedUnaryMethod_StudioStop<WithStreamedUnaryMethod_ShowGet<WithStreamedUnaryMethod_ShowCreate<WithStreamedUnaryMethod_ShowDuplicate<WithStreamedUnaryMethod_ShowRemove<WithStreamedUnaryMethod_ShowLoad<WithStreamedUnaryMethod_SceneGet<WithStreamedUnaryMethod_SceneAdd<WithStreamedUnaryMethod_SceneDuplicate<WithStreamedUnaryMethod_SceneRemove<WithStreamedUnaryMethod_SceneSetAsCurrent<WithStreamedUnaryMethod_SceneGetCurrent<WithStreamedUnaryMethod_SourceGet<WithStreamedUnaryMethod_SourceAdd<WithStreamedUnaryMethod_SourceDuplicate<WithStreamedUnaryMethod_SourceRemove<WithStreamedUnaryMethod_SourceSetProperties<WithStreamedUnaryMethod_Health<Service > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_StudioGet<WithStreamedUnaryMethod_StudioStart<WithStreamedUnaryMethod_StudioStop<WithStreamedUnaryMethod_ShowGet<WithStreamedUnaryMethod_ShowCreate<WithStreamedUnaryMethod_ShowDuplicate<WithStreamedUnaryMethod_ShowRemove<WithStreamedUnaryMethod_ShowLoad<WithStreamedUnaryMethod_SceneGet<WithStreamedUnaryMethod_SceneAdd<WithStreamedUnaryMethod_SceneDuplicate<WithStreamedUnaryMethod_SceneRemove<WithStreamedUnaryMethod_SceneSetAsCurrent<WithStreamedUnaryMethod_SceneGetCurrent<WithStreamedUnaryMethod_SourceGet<WithStreamedUnaryMethod_SourceAdd<WithStreamedUnaryMethod_SourceDuplicate<WithStreamedUnaryMethod_SourceRemove<WithStreamedUnaryMethod_SourceSetProperties<WithStreamedUnaryMethod_SourceRestart<WithStreamedUnaryMethod_Health<Service > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace proto

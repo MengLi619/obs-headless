@@ -20,6 +20,7 @@ public:
 	Source* DuplicateSourceFromScene(Scene* scene, std::string source_id);
 	Source* DuplicateSource(std::string source_id);
 	grpc::Status RemoveSource(std::string source_id);
+	grpc::Status RestartSource(std::string source_id);
 	grpc::Status Start();
 	grpc::Status Stop();
 	grpc::Status UpdateProto(proto::Scene* proto_scene);

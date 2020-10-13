@@ -59,6 +59,7 @@ service Studio {
     rpc SourceDuplicate(SourceDuplicateRequest) returns (SourceDuplicateResponse);
     rpc SourceRemove(SourceRemoveRequest) returns (google.protobuf.Empty);
     rpc SourceSetProperties(SourceSetPropertiesRequest) returns (SourceSetPropertiesResponse);
+    rpc SourceRestart(SourceRestartRequest) returns (google.protobuf.Empty);
 
     rpc Health(google.protobuf.Empty) returns (HealthResponse);
 }
@@ -203,6 +204,13 @@ message SourceSetPropertiesRequest {
     string source_id = 3;
     string source_type = 4;
     string source_url = 5;
+}
+
+// SourceRestartRequest represents a request to restart a source
+message SourceRestartRequest {
+    string show_id = 1;
+    string scene_id = 2;
+    string source_id = 3;
 }
 
 ///////////////

@@ -765,6 +765,49 @@ Status Studio::SourceSetProperties(ServerContext* ctx, const proto::SourceSetPro
 	return s;
 }
 
+Status Studio::SourceRestart(ServerContext* ctx, const proto::SourceRestartRequest* req, Empty* rep) {
+	Status s = Status::OK;
+
+	trace("SourceRestart");
+	mtx.lock();
+	try {
+		string show_id = req->show_id();
+		string scene_id = req->scene_id();
+		string source_id = req->source_id();
+		Show* show = getShow(show_id);
+
+		if(!show) {
+			trace_error("Show not found", field_s(show_id));
+			s = Status(grpc::NOT_FOUND, "Show not found id="+ show_id);
+		} else {
+			Scene* scene = show->GetScene(scene_id);
+
+			if(!scene) {
+				trace_error("Scene not found", field_s(scene_id));
+				s = Status(grpc::NOT_FOUND, "Scene not found id="+ scene_id);
+			} else {
+				s = scene->RestartSource(source_id);
+				if(!s.ok()) {
+					trace_error("Error in RestartSource", field_s(show_id), field_s(scene_id), field_s(source_id))
+				} else {
+					trace_info("Restarted source", field_s(show_id), field_s(scene_id), field_s(source_id));
+				}
+			}
+		}
+	}
+	catch(string e) {
+		trace_error("An exception occured", error(e));
+		s = Status(grpc::INTERNAL, e.c_str());
+	}
+	catch(...) {
+		trace_error("An uncaught exception occured !");
+		s = Status(grpc::INTERNAL, "An uncaught exception occured !");
+	}
+	mtx.unlock();
+
+	return s;
+}
+
 Status Studio::Health(ServerContext* ctx, const Empty* req, proto::HealthResponse* rep) {
 	trace("Health");
 	rep->set_timestamp(std::time(nullptr));

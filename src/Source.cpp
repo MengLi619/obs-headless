@@ -133,6 +133,7 @@ grpc::Status Source::Stop() {
 		return grpc::Status(grpc::FAILED_PRECONDITION, "Source already stopped");
 	}
 
+	obs_source_remove(obs_source);
 	obs_source_release(obs_source);
 	started = false;
 	return grpc::Status::OK;

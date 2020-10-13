@@ -126,6 +126,11 @@ class SourceSetPropertiesRequestDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<SourceSetPropertiesRequest>
       _instance;
 } _SourceSetPropertiesRequest_default_instance_;
+class SourceRestartRequestDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<SourceRestartRequest>
+      _instance;
+} _SourceRestartRequest_default_instance_;
 class StudioGetResponseDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<StudioGetResponse>
@@ -491,6 +496,20 @@ static void InitDefaultsSourceSetPropertiesRequest() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_SourceSetPropertiesRequest =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSourceSetPropertiesRequest}, {}};
 
+static void InitDefaultsSourceRestartRequest() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::proto::_SourceRestartRequest_default_instance_;
+    new (ptr) ::proto::SourceRestartRequest();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::proto::SourceRestartRequest::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_SourceRestartRequest =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSourceRestartRequest}, {}};
+
 static void InitDefaultsStudioGetResponse() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -750,6 +769,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SourceDuplicateRequest.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SourceRemoveRequest.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SourceSetPropertiesRequest.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_SourceRestartRequest.base);
   ::google::protobuf::internal::InitSCC(&scc_info_StudioGetResponse.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ShowGetResponse.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ShowCreateResponse.base);
@@ -768,7 +788,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_HealthResponse.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[36];
+::google::protobuf::Metadata file_level_metadata[37];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -925,6 +945,14 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::SourceSetPropertiesRequest, source_type_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::SourceSetPropertiesRequest, source_url_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::SourceRestartRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::SourceRestartRequest, show_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::SourceRestartRequest, scene_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::SourceRestartRequest, source_id_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::proto::StudioGetResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -1042,22 +1070,23 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 127, -1, sizeof(::proto::SourceDuplicateRequest)},
   { 135, -1, sizeof(::proto::SourceRemoveRequest)},
   { 143, -1, sizeof(::proto::SourceSetPropertiesRequest)},
-  { 153, -1, sizeof(::proto::StudioGetResponse)},
-  { 159, -1, sizeof(::proto::ShowGetResponse)},
-  { 165, -1, sizeof(::proto::ShowCreateResponse)},
-  { 171, -1, sizeof(::proto::ShowDuplicateResponse)},
-  { 177, -1, sizeof(::proto::ShowLoadResponse)},
-  { 183, -1, sizeof(::proto::ShowSwitchSourceResponse)},
-  { 189, -1, sizeof(::proto::SceneGetResponse)},
-  { 195, -1, sizeof(::proto::SceneAddResponse)},
-  { 201, -1, sizeof(::proto::SceneDuplicateResponse)},
-  { 207, -1, sizeof(::proto::SceneSetAsCurrentResponse)},
-  { 213, -1, sizeof(::proto::SceneGetCurrentResponse)},
-  { 219, -1, sizeof(::proto::SourceGetResponse)},
-  { 225, -1, sizeof(::proto::SourceAddResponse)},
-  { 231, -1, sizeof(::proto::SourceDuplicateResponse)},
-  { 237, -1, sizeof(::proto::SourceSetPropertiesResponse)},
-  { 243, -1, sizeof(::proto::HealthResponse)},
+  { 153, -1, sizeof(::proto::SourceRestartRequest)},
+  { 161, -1, sizeof(::proto::StudioGetResponse)},
+  { 167, -1, sizeof(::proto::ShowGetResponse)},
+  { 173, -1, sizeof(::proto::ShowCreateResponse)},
+  { 179, -1, sizeof(::proto::ShowDuplicateResponse)},
+  { 185, -1, sizeof(::proto::ShowLoadResponse)},
+  { 191, -1, sizeof(::proto::ShowSwitchSourceResponse)},
+  { 197, -1, sizeof(::proto::SceneGetResponse)},
+  { 203, -1, sizeof(::proto::SceneAddResponse)},
+  { 209, -1, sizeof(::proto::SceneDuplicateResponse)},
+  { 215, -1, sizeof(::proto::SceneSetAsCurrentResponse)},
+  { 221, -1, sizeof(::proto::SceneGetCurrentResponse)},
+  { 227, -1, sizeof(::proto::SourceGetResponse)},
+  { 233, -1, sizeof(::proto::SourceAddResponse)},
+  { 239, -1, sizeof(::proto::SourceDuplicateResponse)},
+  { 245, -1, sizeof(::proto::SourceSetPropertiesResponse)},
+  { 251, -1, sizeof(::proto::HealthResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -1081,6 +1110,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_SourceDuplicateRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_SourceRemoveRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_SourceSetPropertiesRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_SourceRestartRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_StudioGetResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_ShowGetResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::proto::_ShowCreateResponse_default_instance_),
@@ -1114,7 +1144,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 36);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 37);
 }
 
 void AddDescriptorsImpl() {
@@ -1156,66 +1186,69 @@ void AddDescriptorsImpl() {
       "\001(\t\022\021\n\tsource_id\030\003 \001(\t\"{\n\032SourceSetPrope"
       "rtiesRequest\022\017\n\007show_id\030\001 \001(\t\022\020\n\010scene_i"
       "d\030\002 \001(\t\022\021\n\tsource_id\030\003 \001(\t\022\023\n\013source_typ"
-      "e\030\004 \001(\t\022\022\n\nsource_url\030\005 \001(\t\"7\n\021StudioGet"
-      "Response\022\"\n\006studio\030\001 \001(\0132\022.proto.StudioS"
-      "tate\",\n\017ShowGetResponse\022\031\n\004show\030\001 \001(\0132\013."
-      "proto.Show\"/\n\022ShowCreateResponse\022\031\n\004show"
-      "\030\001 \001(\0132\013.proto.Show\"2\n\025ShowDuplicateResp"
-      "onse\022\031\n\004show\030\001 \001(\0132\013.proto.Show\"-\n\020ShowL"
-      "oadResponse\022\031\n\004show\030\001 \001(\0132\013.proto.Show\"5"
-      "\n\030ShowSwitchSourceResponse\022\031\n\004show\030\001 \001(\013"
-      "2\013.proto.Show\"/\n\020SceneGetResponse\022\033\n\005sce"
-      "ne\030\001 \001(\0132\014.proto.Scene\"/\n\020SceneAddRespon"
-      "se\022\033\n\005scene\030\001 \001(\0132\014.proto.Scene\"5\n\026Scene"
-      "DuplicateResponse\022\033\n\005scene\030\001 \001(\0132\014.proto"
-      ".Scene\"6\n\031SceneSetAsCurrentResponse\022\031\n\004s"
-      "how\030\001 \001(\0132\013.proto.Show\"+\n\027SceneGetCurren"
-      "tResponse\022\020\n\010scene_id\030\002 \001(\t\"2\n\021SourceGet"
-      "Response\022\035\n\006source\030\001 \001(\0132\r.proto.Source\""
-      "2\n\021SourceAddResponse\022\035\n\006source\030\001 \001(\0132\r.p"
-      "roto.Source\"8\n\027SourceDuplicateResponse\022\035"
-      "\n\006source\030\001 \001(\0132\r.proto.Source\"<\n\033SourceS"
-      "etPropertiesResponse\022\035\n\006source\030\001 \001(\0132\r.p"
-      "roto.Source\"#\n\016HealthResponse\022\021\n\ttimesta"
-      "mp\030\001 \001(\0032\354\n\n\006Studio\022=\n\tStudioGet\022\026.googl"
-      "e.protobuf.Empty\032\030.proto.StudioGetRespon"
-      "se\022=\n\013StudioStart\022\026.google.protobuf.Empt"
-      "y\032\026.google.protobuf.Empty\022<\n\nStudioStop\022"
-      "\026.google.protobuf.Empty\032\026.google.protobu"
-      "f.Empty\0228\n\007ShowGet\022\025.proto.ShowGetReques"
-      "t\032\026.proto.ShowGetResponse\022A\n\nShowCreate\022"
-      "\030.proto.ShowCreateRequest\032\031.proto.ShowCr"
-      "eateResponse\022J\n\rShowDuplicate\022\033.proto.Sh"
-      "owDuplicateRequest\032\034.proto.ShowDuplicate"
-      "Response\022>\n\nShowRemove\022\030.proto.ShowRemov"
-      "eRequest\032\026.google.protobuf.Empty\022;\n\010Show"
-      "Load\022\026.proto.ShowLoadRequest\032\027.proto.Sho"
-      "wLoadResponse\022;\n\010SceneGet\022\026.proto.SceneG"
-      "etRequest\032\027.proto.SceneGetResponse\022;\n\010Sc"
-      "eneAdd\022\026.proto.SceneAddRequest\032\027.proto.S"
-      "ceneAddResponse\022M\n\016SceneDuplicate\022\034.prot"
-      "o.SceneDuplicateRequest\032\035.proto.SceneDup"
-      "licateResponse\022@\n\013SceneRemove\022\031.proto.Sc"
-      "eneRemoveRequest\032\026.google.protobuf.Empty"
-      "\022V\n\021SceneSetAsCurrent\022\037.proto.SceneSetAs"
-      "CurrentRequest\032 .proto.SceneSetAsCurrent"
-      "Response\022P\n\017SceneGetCurrent\022\035.proto.Scen"
-      "eGetCurrentRequest\032\036.proto.SceneGetCurre"
-      "ntResponse\022>\n\tSourceGet\022\027.proto.SourceGe"
-      "tRequest\032\030.proto.SourceGetResponse\022>\n\tSo"
-      "urceAdd\022\027.proto.SourceAddRequest\032\030.proto"
-      ".SourceAddResponse\022P\n\017SourceDuplicate\022\035."
-      "proto.SourceDuplicateRequest\032\036.proto.Sou"
-      "rceDuplicateResponse\022B\n\014SourceRemove\022\032.p"
-      "roto.SourceRemoveRequest\032\026.google.protob"
-      "uf.Empty\022\\\n\023SourceSetProperties\022!.proto."
-      "SourceSetPropertiesRequest\032\".proto.Sourc"
-      "eSetPropertiesResponse\0227\n\006Health\022\026.googl"
-      "e.protobuf.Empty\032\025.proto.HealthResponseb"
-      "\006proto3"
+      "e\030\004 \001(\t\022\022\n\nsource_url\030\005 \001(\t\"L\n\024SourceRes"
+      "tartRequest\022\017\n\007show_id\030\001 \001(\t\022\020\n\010scene_id"
+      "\030\002 \001(\t\022\021\n\tsource_id\030\003 \001(\t\"7\n\021StudioGetRe"
+      "sponse\022\"\n\006studio\030\001 \001(\0132\022.proto.StudioSta"
+      "te\",\n\017ShowGetResponse\022\031\n\004show\030\001 \001(\0132\013.pr"
+      "oto.Show\"/\n\022ShowCreateResponse\022\031\n\004show\030\001"
+      " \001(\0132\013.proto.Show\"2\n\025ShowDuplicateRespon"
+      "se\022\031\n\004show\030\001 \001(\0132\013.proto.Show\"-\n\020ShowLoa"
+      "dResponse\022\031\n\004show\030\001 \001(\0132\013.proto.Show\"5\n\030"
+      "ShowSwitchSourceResponse\022\031\n\004show\030\001 \001(\0132\013"
+      ".proto.Show\"/\n\020SceneGetResponse\022\033\n\005scene"
+      "\030\001 \001(\0132\014.proto.Scene\"/\n\020SceneAddResponse"
+      "\022\033\n\005scene\030\001 \001(\0132\014.proto.Scene\"5\n\026SceneDu"
+      "plicateResponse\022\033\n\005scene\030\001 \001(\0132\014.proto.S"
+      "cene\"6\n\031SceneSetAsCurrentResponse\022\031\n\004sho"
+      "w\030\001 \001(\0132\013.proto.Show\"+\n\027SceneGetCurrentR"
+      "esponse\022\020\n\010scene_id\030\002 \001(\t\"2\n\021SourceGetRe"
+      "sponse\022\035\n\006source\030\001 \001(\0132\r.proto.Source\"2\n"
+      "\021SourceAddResponse\022\035\n\006source\030\001 \001(\0132\r.pro"
+      "to.Source\"8\n\027SourceDuplicateResponse\022\035\n\006"
+      "source\030\001 \001(\0132\r.proto.Source\"<\n\033SourceSet"
+      "PropertiesResponse\022\035\n\006source\030\001 \001(\0132\r.pro"
+      "to.Source\"#\n\016HealthResponse\022\021\n\ttimestamp"
+      "\030\001 \001(\0032\262\013\n\006Studio\022=\n\tStudioGet\022\026.google."
+      "protobuf.Empty\032\030.proto.StudioGetResponse"
+      "\022=\n\013StudioStart\022\026.google.protobuf.Empty\032"
+      "\026.google.protobuf.Empty\022<\n\nStudioStop\022\026."
+      "google.protobuf.Empty\032\026.google.protobuf."
+      "Empty\0228\n\007ShowGet\022\025.proto.ShowGetRequest\032"
+      "\026.proto.ShowGetResponse\022A\n\nShowCreate\022\030."
+      "proto.ShowCreateRequest\032\031.proto.ShowCrea"
+      "teResponse\022J\n\rShowDuplicate\022\033.proto.Show"
+      "DuplicateRequest\032\034.proto.ShowDuplicateRe"
+      "sponse\022>\n\nShowRemove\022\030.proto.ShowRemoveR"
+      "equest\032\026.google.protobuf.Empty\022;\n\010ShowLo"
+      "ad\022\026.proto.ShowLoadRequest\032\027.proto.ShowL"
+      "oadResponse\022;\n\010SceneGet\022\026.proto.SceneGet"
+      "Request\032\027.proto.SceneGetResponse\022;\n\010Scen"
+      "eAdd\022\026.proto.SceneAddRequest\032\027.proto.Sce"
+      "neAddResponse\022M\n\016SceneDuplicate\022\034.proto."
+      "SceneDuplicateRequest\032\035.proto.SceneDupli"
+      "cateResponse\022@\n\013SceneRemove\022\031.proto.Scen"
+      "eRemoveRequest\032\026.google.protobuf.Empty\022V"
+      "\n\021SceneSetAsCurrent\022\037.proto.SceneSetAsCu"
+      "rrentRequest\032 .proto.SceneSetAsCurrentRe"
+      "sponse\022P\n\017SceneGetCurrent\022\035.proto.SceneG"
+      "etCurrentRequest\032\036.proto.SceneGetCurrent"
+      "Response\022>\n\tSourceGet\022\027.proto.SourceGetR"
+      "equest\032\030.proto.SourceGetResponse\022>\n\tSour"
+      "ceAdd\022\027.proto.SourceAddRequest\032\030.proto.S"
+      "ourceAddResponse\022P\n\017SourceDuplicate\022\035.pr"
+      "oto.SourceDuplicateRequest\032\036.proto.Sourc"
+      "eDuplicateResponse\022B\n\014SourceRemove\022\032.pro"
+      "to.SourceRemoveRequest\032\026.google.protobuf"
+      ".Empty\022\\\n\023SourceSetProperties\022!.proto.So"
+      "urceSetPropertiesRequest\032\".proto.SourceS"
+      "etPropertiesResponse\022D\n\rSourceRestart\022\033."
+      "proto.SourceRestartRequest\032\026.google.prot"
+      "obuf.Empty\0227\n\006Health\022\026.google.protobuf.E"
+      "mpty\032\025.proto.HealthResponseb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 3687);
+      descriptor, 3835);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "studio.proto", &protobuf_RegisterTypes);
   ::protobuf_google_2fprotobuf_2fempty_2eproto::AddDescriptors();
@@ -7932,6 +7965,364 @@ void SourceSetPropertiesRequest::InternalSwap(SourceSetPropertiesRequest* other)
 
 // ===================================================================
 
+void SourceRestartRequest::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SourceRestartRequest::kShowIdFieldNumber;
+const int SourceRestartRequest::kSceneIdFieldNumber;
+const int SourceRestartRequest::kSourceIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SourceRestartRequest::SourceRestartRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_studio_2eproto::scc_info_SourceRestartRequest.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:proto.SourceRestartRequest)
+}
+SourceRestartRequest::SourceRestartRequest(const SourceRestartRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  show_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.show_id().size() > 0) {
+    show_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.show_id_);
+  }
+  scene_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.scene_id().size() > 0) {
+    scene_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.scene_id_);
+  }
+  source_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.source_id().size() > 0) {
+    source_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.source_id_);
+  }
+  // @@protoc_insertion_point(copy_constructor:proto.SourceRestartRequest)
+}
+
+void SourceRestartRequest::SharedCtor() {
+  show_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  scene_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  source_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+SourceRestartRequest::~SourceRestartRequest() {
+  // @@protoc_insertion_point(destructor:proto.SourceRestartRequest)
+  SharedDtor();
+}
+
+void SourceRestartRequest::SharedDtor() {
+  show_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  scene_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  source_id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void SourceRestartRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* SourceRestartRequest::descriptor() {
+  ::protobuf_studio_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_studio_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const SourceRestartRequest& SourceRestartRequest::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_studio_2eproto::scc_info_SourceRestartRequest.base);
+  return *internal_default_instance();
+}
+
+
+void SourceRestartRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto.SourceRestartRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  show_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  scene_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  source_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool SourceRestartRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:proto.SourceRestartRequest)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string show_id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_show_id()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->show_id().data(), static_cast<int>(this->show_id().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "proto.SourceRestartRequest.show_id"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string scene_id = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_scene_id()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->scene_id().data(), static_cast<int>(this->scene_id().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "proto.SourceRestartRequest.scene_id"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string source_id = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_source_id()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->source_id().data(), static_cast<int>(this->source_id().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "proto.SourceRestartRequest.source_id"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:proto.SourceRestartRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:proto.SourceRestartRequest)
+  return false;
+#undef DO_
+}
+
+void SourceRestartRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:proto.SourceRestartRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string show_id = 1;
+  if (this->show_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->show_id().data(), static_cast<int>(this->show_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "proto.SourceRestartRequest.show_id");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->show_id(), output);
+  }
+
+  // string scene_id = 2;
+  if (this->scene_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->scene_id().data(), static_cast<int>(this->scene_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "proto.SourceRestartRequest.scene_id");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->scene_id(), output);
+  }
+
+  // string source_id = 3;
+  if (this->source_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->source_id().data(), static_cast<int>(this->source_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "proto.SourceRestartRequest.source_id");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->source_id(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:proto.SourceRestartRequest)
+}
+
+::google::protobuf::uint8* SourceRestartRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:proto.SourceRestartRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string show_id = 1;
+  if (this->show_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->show_id().data(), static_cast<int>(this->show_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "proto.SourceRestartRequest.show_id");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->show_id(), target);
+  }
+
+  // string scene_id = 2;
+  if (this->scene_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->scene_id().data(), static_cast<int>(this->scene_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "proto.SourceRestartRequest.scene_id");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->scene_id(), target);
+  }
+
+  // string source_id = 3;
+  if (this->source_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->source_id().data(), static_cast<int>(this->source_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "proto.SourceRestartRequest.source_id");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->source_id(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:proto.SourceRestartRequest)
+  return target;
+}
+
+size_t SourceRestartRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto.SourceRestartRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string show_id = 1;
+  if (this->show_id().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->show_id());
+  }
+
+  // string scene_id = 2;
+  if (this->scene_id().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->scene_id());
+  }
+
+  // string source_id = 3;
+  if (this->source_id().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->source_id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SourceRestartRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:proto.SourceRestartRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SourceRestartRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const SourceRestartRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:proto.SourceRestartRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:proto.SourceRestartRequest)
+    MergeFrom(*source);
+  }
+}
+
+void SourceRestartRequest::MergeFrom(const SourceRestartRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.SourceRestartRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.show_id().size() > 0) {
+
+    show_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.show_id_);
+  }
+  if (from.scene_id().size() > 0) {
+
+    scene_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.scene_id_);
+  }
+  if (from.source_id().size() > 0) {
+
+    source_id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.source_id_);
+  }
+}
+
+void SourceRestartRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:proto.SourceRestartRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SourceRestartRequest::CopyFrom(const SourceRestartRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto.SourceRestartRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SourceRestartRequest::IsInitialized() const {
+  return true;
+}
+
+void SourceRestartRequest::Swap(SourceRestartRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SourceRestartRequest::InternalSwap(SourceRestartRequest* other) {
+  using std::swap;
+  show_id_.Swap(&other->show_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  scene_id_.Swap(&other->scene_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  source_id_.Swap(&other->source_id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata SourceRestartRequest::GetMetadata() const {
+  protobuf_studio_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_studio_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
 void StudioGetResponse::InitAsDefaultInstance() {
   ::proto::_StudioGetResponse_default_instance_._instance.get_mutable()->studio_ = const_cast< ::proto::StudioState*>(
       ::proto::StudioState::internal_default_instance());
@@ -11734,6 +12125,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::proto::SourceRemoveRequest* Aren
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::proto::SourceSetPropertiesRequest* Arena::CreateMaybeMessage< ::proto::SourceSetPropertiesRequest >(Arena* arena) {
   return Arena::CreateInternal< ::proto::SourceSetPropertiesRequest >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::proto::SourceRestartRequest* Arena::CreateMaybeMessage< ::proto::SourceRestartRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::proto::SourceRestartRequest >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::proto::StudioGetResponse* Arena::CreateMaybeMessage< ::proto::StudioGetResponse >(Arena* arena) {
   return Arena::CreateInternal< ::proto::StudioGetResponse >(arena);

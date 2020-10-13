@@ -39,7 +39,7 @@ namespace protobuf_studio_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[36];
+  static const ::google::protobuf::internal::ParseTable schema[37];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -143,6 +143,9 @@ extern SourceGetResponseDefaultTypeInternal _SourceGetResponse_default_instance_
 class SourceRemoveRequest;
 class SourceRemoveRequestDefaultTypeInternal;
 extern SourceRemoveRequestDefaultTypeInternal _SourceRemoveRequest_default_instance_;
+class SourceRestartRequest;
+class SourceRestartRequestDefaultTypeInternal;
+extern SourceRestartRequestDefaultTypeInternal _SourceRestartRequest_default_instance_;
 class SourceSetPropertiesRequest;
 class SourceSetPropertiesRequestDefaultTypeInternal;
 extern SourceSetPropertiesRequestDefaultTypeInternal _SourceSetPropertiesRequest_default_instance_;
@@ -190,6 +193,7 @@ template<> ::proto::SourceDuplicateResponse* Arena::CreateMaybeMessage<::proto::
 template<> ::proto::SourceGetRequest* Arena::CreateMaybeMessage<::proto::SourceGetRequest>(Arena*);
 template<> ::proto::SourceGetResponse* Arena::CreateMaybeMessage<::proto::SourceGetResponse>(Arena*);
 template<> ::proto::SourceRemoveRequest* Arena::CreateMaybeMessage<::proto::SourceRemoveRequest>(Arena*);
+template<> ::proto::SourceRestartRequest* Arena::CreateMaybeMessage<::proto::SourceRestartRequest>(Arena*);
 template<> ::proto::SourceSetPropertiesRequest* Arena::CreateMaybeMessage<::proto::SourceSetPropertiesRequest>(Arena*);
 template<> ::proto::SourceSetPropertiesResponse* Arena::CreateMaybeMessage<::proto::SourceSetPropertiesResponse>(Arena*);
 template<> ::proto::StudioGetResponse* Arena::CreateMaybeMessage<::proto::StudioGetResponse>(Arena*);
@@ -2901,6 +2905,147 @@ class SourceSetPropertiesRequest : public ::google::protobuf::Message /* @@proto
 };
 // -------------------------------------------------------------------
 
+class SourceRestartRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto.SourceRestartRequest) */ {
+ public:
+  SourceRestartRequest();
+  virtual ~SourceRestartRequest();
+
+  SourceRestartRequest(const SourceRestartRequest& from);
+
+  inline SourceRestartRequest& operator=(const SourceRestartRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SourceRestartRequest(SourceRestartRequest&& from) noexcept
+    : SourceRestartRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SourceRestartRequest& operator=(SourceRestartRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SourceRestartRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SourceRestartRequest* internal_default_instance() {
+    return reinterpret_cast<const SourceRestartRequest*>(
+               &_SourceRestartRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  void Swap(SourceRestartRequest* other);
+  friend void swap(SourceRestartRequest& a, SourceRestartRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SourceRestartRequest* New() const final {
+    return CreateMaybeMessage<SourceRestartRequest>(NULL);
+  }
+
+  SourceRestartRequest* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SourceRestartRequest>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const SourceRestartRequest& from);
+  void MergeFrom(const SourceRestartRequest& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SourceRestartRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string show_id = 1;
+  void clear_show_id();
+  static const int kShowIdFieldNumber = 1;
+  const ::std::string& show_id() const;
+  void set_show_id(const ::std::string& value);
+  #if LANG_CXX11
+  void set_show_id(::std::string&& value);
+  #endif
+  void set_show_id(const char* value);
+  void set_show_id(const char* value, size_t size);
+  ::std::string* mutable_show_id();
+  ::std::string* release_show_id();
+  void set_allocated_show_id(::std::string* show_id);
+
+  // string scene_id = 2;
+  void clear_scene_id();
+  static const int kSceneIdFieldNumber = 2;
+  const ::std::string& scene_id() const;
+  void set_scene_id(const ::std::string& value);
+  #if LANG_CXX11
+  void set_scene_id(::std::string&& value);
+  #endif
+  void set_scene_id(const char* value);
+  void set_scene_id(const char* value, size_t size);
+  ::std::string* mutable_scene_id();
+  ::std::string* release_scene_id();
+  void set_allocated_scene_id(::std::string* scene_id);
+
+  // string source_id = 3;
+  void clear_source_id();
+  static const int kSourceIdFieldNumber = 3;
+  const ::std::string& source_id() const;
+  void set_source_id(const ::std::string& value);
+  #if LANG_CXX11
+  void set_source_id(::std::string&& value);
+  #endif
+  void set_source_id(const char* value);
+  void set_source_id(const char* value, size_t size);
+  ::std::string* mutable_source_id();
+  ::std::string* release_source_id();
+  void set_allocated_source_id(::std::string* source_id);
+
+  // @@protoc_insertion_point(class_scope:proto.SourceRestartRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr show_id_;
+  ::google::protobuf::internal::ArenaStringPtr scene_id_;
+  ::google::protobuf::internal::ArenaStringPtr source_id_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_studio_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class StudioGetResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto.StudioGetResponse) */ {
  public:
   StudioGetResponse();
@@ -2936,7 +3081,7 @@ class StudioGetResponse : public ::google::protobuf::Message /* @@protoc_inserti
                &_StudioGetResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   void Swap(StudioGetResponse* other);
   friend void swap(StudioGetResponse& a, StudioGetResponse& b) {
@@ -3045,7 +3190,7 @@ class ShowGetResponse : public ::google::protobuf::Message /* @@protoc_insertion
                &_ShowGetResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   void Swap(ShowGetResponse* other);
   friend void swap(ShowGetResponse& a, ShowGetResponse& b) {
@@ -3154,7 +3299,7 @@ class ShowCreateResponse : public ::google::protobuf::Message /* @@protoc_insert
                &_ShowCreateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   void Swap(ShowCreateResponse* other);
   friend void swap(ShowCreateResponse& a, ShowCreateResponse& b) {
@@ -3263,7 +3408,7 @@ class ShowDuplicateResponse : public ::google::protobuf::Message /* @@protoc_ins
                &_ShowDuplicateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   void Swap(ShowDuplicateResponse* other);
   friend void swap(ShowDuplicateResponse& a, ShowDuplicateResponse& b) {
@@ -3372,7 +3517,7 @@ class ShowLoadResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_ShowLoadResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   void Swap(ShowLoadResponse* other);
   friend void swap(ShowLoadResponse& a, ShowLoadResponse& b) {
@@ -3481,7 +3626,7 @@ class ShowSwitchSourceResponse : public ::google::protobuf::Message /* @@protoc_
                &_ShowSwitchSourceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   void Swap(ShowSwitchSourceResponse* other);
   friend void swap(ShowSwitchSourceResponse& a, ShowSwitchSourceResponse& b) {
@@ -3590,7 +3735,7 @@ class SceneGetResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_SceneGetResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   void Swap(SceneGetResponse* other);
   friend void swap(SceneGetResponse& a, SceneGetResponse& b) {
@@ -3699,7 +3844,7 @@ class SceneAddResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_SceneAddResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   void Swap(SceneAddResponse* other);
   friend void swap(SceneAddResponse& a, SceneAddResponse& b) {
@@ -3808,7 +3953,7 @@ class SceneDuplicateResponse : public ::google::protobuf::Message /* @@protoc_in
                &_SceneDuplicateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   void Swap(SceneDuplicateResponse* other);
   friend void swap(SceneDuplicateResponse& a, SceneDuplicateResponse& b) {
@@ -3917,7 +4062,7 @@ class SceneSetAsCurrentResponse : public ::google::protobuf::Message /* @@protoc
                &_SceneSetAsCurrentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   void Swap(SceneSetAsCurrentResponse* other);
   friend void swap(SceneSetAsCurrentResponse& a, SceneSetAsCurrentResponse& b) {
@@ -4026,7 +4171,7 @@ class SceneGetCurrentResponse : public ::google::protobuf::Message /* @@protoc_i
                &_SceneGetCurrentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   void Swap(SceneGetCurrentResponse* other);
   friend void swap(SceneGetCurrentResponse& a, SceneGetCurrentResponse& b) {
@@ -4137,7 +4282,7 @@ class SourceGetResponse : public ::google::protobuf::Message /* @@protoc_inserti
                &_SourceGetResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   void Swap(SourceGetResponse* other);
   friend void swap(SourceGetResponse& a, SourceGetResponse& b) {
@@ -4246,7 +4391,7 @@ class SourceAddResponse : public ::google::protobuf::Message /* @@protoc_inserti
                &_SourceAddResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   void Swap(SourceAddResponse* other);
   friend void swap(SourceAddResponse& a, SourceAddResponse& b) {
@@ -4355,7 +4500,7 @@ class SourceDuplicateResponse : public ::google::protobuf::Message /* @@protoc_i
                &_SourceDuplicateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   void Swap(SourceDuplicateResponse* other);
   friend void swap(SourceDuplicateResponse& a, SourceDuplicateResponse& b) {
@@ -4464,7 +4609,7 @@ class SourceSetPropertiesResponse : public ::google::protobuf::Message /* @@prot
                &_SourceSetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   void Swap(SourceSetPropertiesResponse* other);
   friend void swap(SourceSetPropertiesResponse& a, SourceSetPropertiesResponse& b) {
@@ -4573,7 +4718,7 @@ class HealthResponse : public ::google::protobuf::Message /* @@protoc_insertion_
                &_HealthResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   void Swap(HealthResponse* other);
   friend void swap(HealthResponse& a, HealthResponse& b) {
@@ -7429,6 +7574,169 @@ inline void SourceSetPropertiesRequest::set_allocated_source_url(::std::string* 
 
 // -------------------------------------------------------------------
 
+// SourceRestartRequest
+
+// string show_id = 1;
+inline void SourceRestartRequest::clear_show_id() {
+  show_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SourceRestartRequest::show_id() const {
+  // @@protoc_insertion_point(field_get:proto.SourceRestartRequest.show_id)
+  return show_id_.GetNoArena();
+}
+inline void SourceRestartRequest::set_show_id(const ::std::string& value) {
+  
+  show_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:proto.SourceRestartRequest.show_id)
+}
+#if LANG_CXX11
+inline void SourceRestartRequest::set_show_id(::std::string&& value) {
+  
+  show_id_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:proto.SourceRestartRequest.show_id)
+}
+#endif
+inline void SourceRestartRequest::set_show_id(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  show_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:proto.SourceRestartRequest.show_id)
+}
+inline void SourceRestartRequest::set_show_id(const char* value, size_t size) {
+  
+  show_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:proto.SourceRestartRequest.show_id)
+}
+inline ::std::string* SourceRestartRequest::mutable_show_id() {
+  
+  // @@protoc_insertion_point(field_mutable:proto.SourceRestartRequest.show_id)
+  return show_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SourceRestartRequest::release_show_id() {
+  // @@protoc_insertion_point(field_release:proto.SourceRestartRequest.show_id)
+  
+  return show_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SourceRestartRequest::set_allocated_show_id(::std::string* show_id) {
+  if (show_id != NULL) {
+    
+  } else {
+    
+  }
+  show_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), show_id);
+  // @@protoc_insertion_point(field_set_allocated:proto.SourceRestartRequest.show_id)
+}
+
+// string scene_id = 2;
+inline void SourceRestartRequest::clear_scene_id() {
+  scene_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SourceRestartRequest::scene_id() const {
+  // @@protoc_insertion_point(field_get:proto.SourceRestartRequest.scene_id)
+  return scene_id_.GetNoArena();
+}
+inline void SourceRestartRequest::set_scene_id(const ::std::string& value) {
+  
+  scene_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:proto.SourceRestartRequest.scene_id)
+}
+#if LANG_CXX11
+inline void SourceRestartRequest::set_scene_id(::std::string&& value) {
+  
+  scene_id_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:proto.SourceRestartRequest.scene_id)
+}
+#endif
+inline void SourceRestartRequest::set_scene_id(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  scene_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:proto.SourceRestartRequest.scene_id)
+}
+inline void SourceRestartRequest::set_scene_id(const char* value, size_t size) {
+  
+  scene_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:proto.SourceRestartRequest.scene_id)
+}
+inline ::std::string* SourceRestartRequest::mutable_scene_id() {
+  
+  // @@protoc_insertion_point(field_mutable:proto.SourceRestartRequest.scene_id)
+  return scene_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SourceRestartRequest::release_scene_id() {
+  // @@protoc_insertion_point(field_release:proto.SourceRestartRequest.scene_id)
+  
+  return scene_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SourceRestartRequest::set_allocated_scene_id(::std::string* scene_id) {
+  if (scene_id != NULL) {
+    
+  } else {
+    
+  }
+  scene_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), scene_id);
+  // @@protoc_insertion_point(field_set_allocated:proto.SourceRestartRequest.scene_id)
+}
+
+// string source_id = 3;
+inline void SourceRestartRequest::clear_source_id() {
+  source_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SourceRestartRequest::source_id() const {
+  // @@protoc_insertion_point(field_get:proto.SourceRestartRequest.source_id)
+  return source_id_.GetNoArena();
+}
+inline void SourceRestartRequest::set_source_id(const ::std::string& value) {
+  
+  source_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:proto.SourceRestartRequest.source_id)
+}
+#if LANG_CXX11
+inline void SourceRestartRequest::set_source_id(::std::string&& value) {
+  
+  source_id_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:proto.SourceRestartRequest.source_id)
+}
+#endif
+inline void SourceRestartRequest::set_source_id(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  source_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:proto.SourceRestartRequest.source_id)
+}
+inline void SourceRestartRequest::set_source_id(const char* value, size_t size) {
+  
+  source_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:proto.SourceRestartRequest.source_id)
+}
+inline ::std::string* SourceRestartRequest::mutable_source_id() {
+  
+  // @@protoc_insertion_point(field_mutable:proto.SourceRestartRequest.source_id)
+  return source_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SourceRestartRequest::release_source_id() {
+  // @@protoc_insertion_point(field_release:proto.SourceRestartRequest.source_id)
+  
+  return source_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SourceRestartRequest::set_allocated_source_id(::std::string* source_id) {
+  if (source_id != NULL) {
+    
+  } else {
+    
+  }
+  source_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), source_id);
+  // @@protoc_insertion_point(field_set_allocated:proto.SourceRestartRequest.source_id)
+}
+
+// -------------------------------------------------------------------
+
 // StudioGetResponse
 
 // .proto.StudioState studio = 1;
@@ -8317,6 +8625,8 @@ inline void HealthResponse::set_timestamp(::google::protobuf::int64 value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
