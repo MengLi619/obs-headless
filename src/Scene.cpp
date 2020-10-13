@@ -29,7 +29,9 @@ Source* Scene::GetSource(std::string source_id) {
 
 
 Source* Scene::AddSource(std::string source_name, SourceType type, std::string source_url, std::string source_preview_url) {
-	std::string source_id = "source_"+ std::to_string(source_id_counter);
+	std::string counter = std::to_string(source_id_counter);
+	counter = std::string(2 - counter.length(), '0') + counter;
+	std::string source_id = "source_" + counter;
 	source_id_counter++;
 
 	Source* source = new Source(source_id, source_name, type, source_url, source_preview_url, settings);

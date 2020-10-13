@@ -184,7 +184,9 @@ Scene* Show::GetScene(std::string scene_id) {
 }
 
 Scene* Show::AddScene(std::string scene_name) {
-	std::string scene_id = "scene_"+ std::to_string(scene_id_counter);
+	std::string counter = std::to_string(scene_id_counter);
+	counter = std::string(2 - counter.length(), '0') + counter;
+	std::string scene_id = "scene_" + counter;
 	Scene* scene = new Scene(scene_id, scene_name, settings, scene_id_counter++);
 	
 	if(!scene) {
